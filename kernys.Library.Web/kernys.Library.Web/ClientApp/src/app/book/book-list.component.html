@@ -1,0 +1,22 @@
+<h2> List of books 2</h2>
+ 
+
+
+<div class="card-deck">
+<div class="row">
+  <div class="col-4" *ngFor="let b of books">
+    <img src="{{b.PhotoUrl}}" width="80%" height="300px">
+    <div class="card-body">
+      <h5 class="card-title">{{b.Title}}</h5>
+      <p class="card-text">{{b.Description | reduceParagraph:200}}</p>
+      <p class="card-text"><small class="text-muted">ISBN:{{b.ISBN}}</small></p>
+       <ul>
+       <li *ngFor="let a of b.Authors" >
+        <a [routerLink]="['/author/',a.Id]">{{a.FirstName}} {{a.LastName}}</a>   
+       </li>
+       </ul>
+      <button type="button" class="btn btn-primary btn-sm" (click)="handleDetail(b)">Detail</button>
+    </div>
+  </div>
+  </div>
+</div>
