@@ -1,11 +1,12 @@
 import { Routes } from '@angular/router';
-import { BookListComponent } from './book/book-list.component';
+import { BookListComponent } from './book/list/book-list.component';
 import { NotFoundComponent } from './error/404';
 import { LoginComponent } from './security/login/login.component';
 import { LogoutComponent } from './security/login/logout.component';
-import { BookListGuard } from './book/book-list.guard';
+
 import { SignUpComponent } from './security/sign-up/sign-up.component';
 import { ProfileComponent } from './profile/profile.component';
+import { BookListGuard } from './book/list/book-list.guard';
 
 export const LibraryRoutes:Routes=[
 
@@ -18,7 +19,7 @@ export const LibraryRoutes:Routes=[
     
 
 
-     { path:'404',  component:NotFoundComponent},
+    { path:'404',  component:NotFoundComponent},
     { path:'account/logout',  component:LogoutComponent},
     { path:'account/login',  component:LoginComponent, data: {breadcrumb: 'Login' }},
     { path:'account/signup',  component:SignUpComponent, data: {breadcrumb: 'Sign up' }},

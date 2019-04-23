@@ -4,9 +4,9 @@ import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 
 import { BookRoutes } from './book.routes';
-import { BookDetailComponent } from './book-detail.component';
+import { BookDetailComponent } from './detail/book-detail.component';
 import { UtilitiesModule } from '../utilies/utilies.module';
-import { BookCreateComponent } from './book-create.component';
+import { BookCreateComponent } from './create/book-create.component';
 
 @NgModule({
 

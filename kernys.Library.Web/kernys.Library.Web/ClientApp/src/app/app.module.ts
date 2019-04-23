@@ -6,7 +6,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { LibraryAppComponent } from './library-app.component';
 import { NavMenuComponent } from './layout/nav-menu/nav-menu.component';
 import { LibraryRoutes } from './library-app.routes';
-import { BookListComponent } from './book/book-list.component';
+//
 import { NotFoundComponent } from './error/404';
 import { UtilitiesModule } from './utilies/utilies.module';
 import { BreadcrumbComponent } from './layout/breadcrumb/breadcrumb.component';
@@ -17,6 +17,7 @@ import { LogoutComponent } from './security/login/logout.component';
 import { SignUpComponent } from './security/sign-up/sign-up.component';
 import { TOASTR_TOKEN,Toastr } from './core/interfaces/toastr';
 import { ProfileComponent } from './profile/profile.component';
+import { BookListComponent } from './book/list/book-list.component';
 
 let toastr:Toastr=window['toastr'];
 

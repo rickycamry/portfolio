@@ -1,8 +1,8 @@
 import { Routes } from '@angular/router';
 
-import { BookDetailComponent } from './book-detail.component';
-import { BookDetailGuard } from './book-detail.guard';
-import { BookCreateComponent } from './book-create.component';
+import { BookDetailComponent } from './detail/book-detail.component';
+import { BookDetailGuard } from './detail/book-detail.guard';
+import { BookCreateComponent } from './create/book-create.component';
 
 export const BookRoutes:Routes=[
     { path:'create',  component:BookCreateComponent, canActivate:[BookDetailGuard], data:{breadcrumb: 'Create' } },

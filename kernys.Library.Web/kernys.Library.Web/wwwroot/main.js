@@ -57,17 +57,17 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _library_app_component__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./library-app.component */ "./src/app/library-app.component.ts");
 /* harmony import */ var _layout_nav_menu_nav_menu_component__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./layout/nav-menu/nav-menu.component */ "./src/app/layout/nav-menu/nav-menu.component.ts");
 /* harmony import */ var _library_app_routes__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./library-app.routes */ "./src/app/library-app.routes.ts");
-/* harmony import */ var _book_book_list_component__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./book/book-list.component */ "./src/app/book/book-list.component.ts");
-/* harmony import */ var _error_404__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./error/404 */ "./src/app/error/404.ts");
-/* harmony import */ var _utilies_utilies_module__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./utilies/utilies.module */ "./src/app/utilies/utilies.module.ts");
-/* harmony import */ var _layout_breadcrumb_breadcrumb_component__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./layout/breadcrumb/breadcrumb.component */ "./src/app/layout/breadcrumb/breadcrumb.component.ts");
-/* harmony import */ var _security_login_login_component__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./security/login/login.component */ "./src/app/security/login/login.component.ts");
-/* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! @angular/forms */ "../node_modules/@angular/forms/fesm5/forms.js");
-/* harmony import */ var _security_http_interceptor__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./security/http-interceptor */ "./src/app/security/http-interceptor.ts");
-/* harmony import */ var _security_login_logout_component__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./security/login/logout.component */ "./src/app/security/login/logout.component.ts");
-/* harmony import */ var _security_sign_up_sign_up_component__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./security/sign-up/sign-up.component */ "./src/app/security/sign-up/sign-up.component.ts");
-/* harmony import */ var _core_interfaces_toastr__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./core/interfaces/toastr */ "./src/app/core/interfaces/toastr.ts");
-/* harmony import */ var _profile_profile_component__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ./profile/profile.component */ "./src/app/profile/profile.component.ts");
+/* harmony import */ var _error_404__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./error/404 */ "./src/app/error/404.ts");
+/* harmony import */ var _utilies_utilies_module__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./utilies/utilies.module */ "./src/app/utilies/utilies.module.ts");
+/* harmony import */ var _layout_breadcrumb_breadcrumb_component__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./layout/breadcrumb/breadcrumb.component */ "./src/app/layout/breadcrumb/breadcrumb.component.ts");
+/* harmony import */ var _security_login_login_component__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./security/login/login.component */ "./src/app/security/login/login.component.ts");
+/* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! @angular/forms */ "../node_modules/@angular/forms/fesm5/forms.js");
+/* harmony import */ var _security_http_interceptor__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./security/http-interceptor */ "./src/app/security/http-interceptor.ts");
+/* harmony import */ var _security_login_logout_component__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./security/login/logout.component */ "./src/app/security/login/logout.component.ts");
+/* harmony import */ var _security_sign_up_sign_up_component__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./security/sign-up/sign-up.component */ "./src/app/security/sign-up/sign-up.component.ts");
+/* harmony import */ var _core_interfaces_toastr__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./core/interfaces/toastr */ "./src/app/core/interfaces/toastr.ts");
+/* harmony import */ var _profile_profile_component__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./profile/profile.component */ "./src/app/profile/profile.component.ts");
+/* harmony import */ var _book_list_book_list_component__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ./book/list/book-list.component */ "./src/app/book/list/book-list.component.ts");
 
 
 
@@ -76,6 +76,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+//
 
 
 
@@ -96,132 +97,30 @@ var AppModule = /** @class */ (function () {
             declarations: [
                 _library_app_component__WEBPACK_IMPORTED_MODULE_5__["LibraryAppComponent"],
                 _layout_nav_menu_nav_menu_component__WEBPACK_IMPORTED_MODULE_6__["NavMenuComponent"],
-                _layout_breadcrumb_breadcrumb_component__WEBPACK_IMPORTED_MODULE_11__["BreadcrumbComponent"],
-                _book_book_list_component__WEBPACK_IMPORTED_MODULE_8__["BookListComponent"],
-                _error_404__WEBPACK_IMPORTED_MODULE_9__["NotFoundComponent"],
-                _security_login_login_component__WEBPACK_IMPORTED_MODULE_12__["LoginComponent"],
-                _security_login_logout_component__WEBPACK_IMPORTED_MODULE_15__["LogoutComponent"],
-                _security_sign_up_sign_up_component__WEBPACK_IMPORTED_MODULE_16__["SignUpComponent"],
-                _profile_profile_component__WEBPACK_IMPORTED_MODULE_18__["ProfileComponent"]
+                _layout_breadcrumb_breadcrumb_component__WEBPACK_IMPORTED_MODULE_10__["BreadcrumbComponent"],
+                _book_list_book_list_component__WEBPACK_IMPORTED_MODULE_18__["BookListComponent"],
+                _error_404__WEBPACK_IMPORTED_MODULE_8__["NotFoundComponent"],
+                _security_login_login_component__WEBPACK_IMPORTED_MODULE_11__["LoginComponent"],
+                _security_login_logout_component__WEBPACK_IMPORTED_MODULE_14__["LogoutComponent"],
+                _security_sign_up_sign_up_component__WEBPACK_IMPORTED_MODULE_15__["SignUpComponent"],
+                _profile_profile_component__WEBPACK_IMPORTED_MODULE_17__["ProfileComponent"]
             ],
             imports: [
                 _angular_platform_browser__WEBPACK_IMPORTED_MODULE_1__["BrowserModule"],
                 _angular_common_http__WEBPACK_IMPORTED_MODULE_4__["HttpClientModule"],
-                _utilies_utilies_module__WEBPACK_IMPORTED_MODULE_10__["UtilitiesModule"],
-                _angular_forms__WEBPACK_IMPORTED_MODULE_13__["FormsModule"],
-                _angular_forms__WEBPACK_IMPORTED_MODULE_13__["ReactiveFormsModule"],
+                _utilies_utilies_module__WEBPACK_IMPORTED_MODULE_9__["UtilitiesModule"],
+                _angular_forms__WEBPACK_IMPORTED_MODULE_12__["FormsModule"],
+                _angular_forms__WEBPACK_IMPORTED_MODULE_12__["ReactiveFormsModule"],
                 _angular_router__WEBPACK_IMPORTED_MODULE_3__["RouterModule"].forRoot(_library_app_routes__WEBPACK_IMPORTED_MODULE_7__["LibraryRoutes"]),
-                _security_http_interceptor__WEBPACK_IMPORTED_MODULE_14__["HtppInterceptorModule"]
+                _security_http_interceptor__WEBPACK_IMPORTED_MODULE_13__["HtppInterceptorModule"]
             ],
             providers: [
-                { provide: _core_interfaces_toastr__WEBPACK_IMPORTED_MODULE_17__["TOASTR_TOKEN"], useValue: toastr }
+                { provide: _core_interfaces_toastr__WEBPACK_IMPORTED_MODULE_16__["TOASTR_TOKEN"], useValue: toastr }
             ],
             bootstrap: [_library_app_component__WEBPACK_IMPORTED_MODULE_5__["LibraryAppComponent"]]
         })
     ], AppModule);
     return AppModule;
-}());
-
-
-
-/***/ }),
-
-/***/ "./src/app/book/book-list.component.html":
-/*!***********************************************!*\
-  !*** ./src/app/book/book-list.component.html ***!
-  \***********************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-module.exports = "<h2> List of books 2</h2>\r\n \r\n\r\n\r\n<div class=\"card-deck\">\r\n<div class=\"row\">\r\n  <div class=\"col-4\" *ngFor=\"let b of books\">\r\n    <img src=\"{{b.PhotoUrl}}\" width=\"80%\" height=\"300px\">\r\n    <div class=\"card-body\">\r\n      <h5 class=\"card-title\">{{b.Title}}</h5>\r\n      <p class=\"card-text\">{{b.Description | reduceParagraph:200}}</p>\r\n      <p class=\"card-text\"><small class=\"text-muted\">ISBN:{{b.ISBN}}</small></p>\r\n       <ul>\r\n       <li *ngFor=\"let a of b.Authors\" >\r\n        <a [routerLink]=\"['/author/',a.Id]\">{{a.FirstName}} {{a.LastName}}</a>   \r\n       </li>\r\n       </ul>\r\n      <button type=\"button\" class=\"btn btn-primary btn-sm\" (click)=\"handleDetail(b)\">Detail</button>\r\n    </div>\r\n  </div>\r\n  </div>\r\n</div>"
-
-/***/ }),
-
-/***/ "./src/app/book/book-list.component.ts":
-/*!*********************************************!*\
-  !*** ./src/app/book/book-list.component.ts ***!
-  \*********************************************/
-/*! exports provided: BookListComponent */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "BookListComponent", function() { return BookListComponent; });
-/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "../node_modules/tslib/tslib.es6.js");
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "../node_modules/@angular/core/fesm5/core.js");
-/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/router */ "../node_modules/@angular/router/fesm5/router.js");
-/* harmony import */ var _book_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./book.service */ "./src/app/book/book.service.ts");
-
-
-
-
-var BookListComponent = /** @class */ (function () {
-    function BookListComponent(bookService, route) {
-        this.bookService = bookService;
-        this.route = route;
-    }
-    BookListComponent.prototype.ngOnInit = function () {
-        var _this = this;
-        this.bookService.getBooks().subscribe(function (x) {
-            _this.books = x;
-        });
-    };
-    BookListComponent.prototype.handleDetail = function (b) {
-        this.route.navigate(['/book/', b.Id]);
-    };
-    BookListComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
-        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
-            selector: 'books',
-            template: __webpack_require__(/*! ./book-list.component.html */ "./src/app/book/book-list.component.html")
-        }),
-        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_book_service__WEBPACK_IMPORTED_MODULE_3__["BookService"],
-            _angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"]])
-    ], BookListComponent);
-    return BookListComponent;
-}());
-
-
-
-/***/ }),
-
-/***/ "./src/app/book/book-list.guard.ts":
-/*!*****************************************!*\
-  !*** ./src/app/book/book-list.guard.ts ***!
-  \*****************************************/
-/*! exports provided: BookListGuard */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "BookListGuard", function() { return BookListGuard; });
-/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "../node_modules/tslib/tslib.es6.js");
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "../node_modules/@angular/core/fesm5/core.js");
-/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/router */ "../node_modules/@angular/router/fesm5/router.js");
-/* harmony import */ var _security_security_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../security/security.service */ "./src/app/security/security.service.ts");
-
-
-
-
-var BookListGuard = /** @class */ (function () {
-    function BookListGuard(router, securityService) {
-        this.router = router;
-        this.securityService = securityService;
-    }
-    BookListGuard.prototype.canActivate = function (next, state) {
-        var isAuthorized = this.securityService.getAuth() ? true : false;
-        if (!isAuthorized) {
-            this.router.navigate(['account/login']);
-        }
-        return true;
-    };
-    ;
-    BookListGuard = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
-        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])({
-            providedIn: 'root'
-        }),
-        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"], _security_security_service__WEBPACK_IMPORTED_MODULE_3__["SecurityService"]])
-    ], BookListGuard);
-    return BookListGuard;
 }());
 
 
@@ -265,6 +164,108 @@ var BookService = /** @class */ (function () {
         tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpClient"], String])
     ], BookService);
     return BookService;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/book/list/book-list.component.html":
+/*!****************************************************!*\
+  !*** ./src/app/book/list/book-list.component.html ***!
+  \****************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "<h2> List of books 2</h2>\r\n \r\n\r\n\r\n<div class=\"card-deck\">\r\n<div class=\"row\">\r\n  <div class=\"col-4\" *ngFor=\"let b of books\">\r\n    <img src=\"{{b.PhotoUrl}}\" width=\"80%\" height=\"300px\">\r\n    <div class=\"card-body\">\r\n      <h5 class=\"card-title\">{{b.Title}}</h5>\r\n      <p class=\"card-text\">{{b.Description | reduceParagraph:200}}</p>\r\n      <p class=\"card-text\"><small class=\"text-muted\">ISBN:{{b.ISBN}}</small></p>\r\n       <ul>\r\n       <li *ngFor=\"let a of b.Authors\" >\r\n        <a [routerLink]=\"['/author/',a.Id]\">{{a.FirstName}} {{a.LastName}}</a>   \r\n       </li>\r\n       </ul>\r\n      <button type=\"button\" class=\"btn btn-primary btn-sm\" (click)=\"handleDetail(b)\">Detail</button>\r\n    </div>\r\n  </div>\r\n  </div>\r\n</div>"
+
+/***/ }),
+
+/***/ "./src/app/book/list/book-list.component.ts":
+/*!**************************************************!*\
+  !*** ./src/app/book/list/book-list.component.ts ***!
+  \**************************************************/
+/*! exports provided: BookListComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "BookListComponent", function() { return BookListComponent; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "../node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "../node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/router */ "../node_modules/@angular/router/fesm5/router.js");
+/* harmony import */ var _book_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../book.service */ "./src/app/book/book.service.ts");
+
+
+
+
+var BookListComponent = /** @class */ (function () {
+    function BookListComponent(bookService, route) {
+        this.bookService = bookService;
+        this.route = route;
+    }
+    BookListComponent.prototype.ngOnInit = function () {
+        var _this = this;
+        this.bookService.getBooks().subscribe(function (x) {
+            _this.books = x;
+        });
+    };
+    BookListComponent.prototype.handleDetail = function (b) {
+        this.route.navigate(['/book/', b.Id]);
+    };
+    BookListComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
+            selector: 'books',
+            template: __webpack_require__(/*! ./book-list.component.html */ "./src/app/book/list/book-list.component.html")
+        }),
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_book_service__WEBPACK_IMPORTED_MODULE_3__["BookService"],
+            _angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"]])
+    ], BookListComponent);
+    return BookListComponent;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/book/list/book-list.guard.ts":
+/*!**********************************************!*\
+  !*** ./src/app/book/list/book-list.guard.ts ***!
+  \**********************************************/
+/*! exports provided: BookListGuard */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "BookListGuard", function() { return BookListGuard; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "../node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "../node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/router */ "../node_modules/@angular/router/fesm5/router.js");
+/* harmony import */ var _security_security_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../security/security.service */ "./src/app/security/security.service.ts");
+
+
+
+
+var BookListGuard = /** @class */ (function () {
+    function BookListGuard(router, securityService) {
+        this.router = router;
+        this.securityService = securityService;
+    }
+    BookListGuard.prototype.canActivate = function (next, state) {
+        var isAuthorized = this.securityService.getAuth() ? true : false;
+        if (!isAuthorized) {
+            this.router.navigate(['account/login']);
+        }
+        return true;
+    };
+    ;
+    BookListGuard = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])({
+            providedIn: 'root'
+        }),
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"], _security_security_service__WEBPACK_IMPORTED_MODULE_3__["SecurityService"]])
+    ], BookListGuard);
+    return BookListGuard;
 }());
 
 
@@ -630,13 +631,13 @@ var LibraryAppComponent = /** @class */ (function () {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "LibraryRoutes", function() { return LibraryRoutes; });
-/* harmony import */ var _book_book_list_component__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./book/book-list.component */ "./src/app/book/book-list.component.ts");
+/* harmony import */ var _book_list_book_list_component__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./book/list/book-list.component */ "./src/app/book/list/book-list.component.ts");
 /* harmony import */ var _error_404__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./error/404 */ "./src/app/error/404.ts");
 /* harmony import */ var _security_login_login_component__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./security/login/login.component */ "./src/app/security/login/login.component.ts");
 /* harmony import */ var _security_login_logout_component__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./security/login/logout.component */ "./src/app/security/login/logout.component.ts");
-/* harmony import */ var _book_book_list_guard__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./book/book-list.guard */ "./src/app/book/book-list.guard.ts");
-/* harmony import */ var _security_sign_up_sign_up_component__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./security/sign-up/sign-up.component */ "./src/app/security/sign-up/sign-up.component.ts");
-/* harmony import */ var _profile_profile_component__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./profile/profile.component */ "./src/app/profile/profile.component.ts");
+/* harmony import */ var _security_sign_up_sign_up_component__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./security/sign-up/sign-up.component */ "./src/app/security/sign-up/sign-up.component.ts");
+/* harmony import */ var _profile_profile_component__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./profile/profile.component */ "./src/app/profile/profile.component.ts");
+/* harmony import */ var _book_list_book_list_guard__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./book/list/book-list.guard */ "./src/app/book/list/book-list.guard.ts");
 
 
 
@@ -645,16 +646,16 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var LibraryRoutes = [
-    { path: '', component: _book_book_list_component__WEBPACK_IMPORTED_MODULE_0__["BookListComponent"], pathMatch: 'full', canActivate: [_book_book_list_guard__WEBPACK_IMPORTED_MODULE_4__["BookListGuard"]], data: { breadcrumb: 'Books' } },
-    { path: 'books', component: _book_book_list_component__WEBPACK_IMPORTED_MODULE_0__["BookListComponent"], canActivate: [_book_book_list_guard__WEBPACK_IMPORTED_MODULE_4__["BookListGuard"]], data: { breadcrumb: 'Books' } },
+    { path: '', component: _book_list_book_list_component__WEBPACK_IMPORTED_MODULE_0__["BookListComponent"], pathMatch: 'full', canActivate: [_book_list_book_list_guard__WEBPACK_IMPORTED_MODULE_6__["BookListGuard"]], data: { breadcrumb: 'Books' } },
+    { path: 'books', component: _book_list_book_list_component__WEBPACK_IMPORTED_MODULE_0__["BookListComponent"], canActivate: [_book_list_book_list_guard__WEBPACK_IMPORTED_MODULE_6__["BookListGuard"]], data: { breadcrumb: 'Books' } },
     { path: 'book', loadChildren: './book/book.module#BookModule', data: { breadcrumb: 'Book' } },
     { path: 'authors', loadChildren: './author/author.module#AuthorModule', data: { breadcrumb: 'Authors' } },
     { path: 'author', loadChildren: './author/author.module#AuthorModule', data: { breadcrumb: 'Author' } },
-    { path: 'profile', component: _profile_profile_component__WEBPACK_IMPORTED_MODULE_6__["ProfileComponent"] },
+    { path: 'profile', component: _profile_profile_component__WEBPACK_IMPORTED_MODULE_5__["ProfileComponent"] },
     { path: '404', component: _error_404__WEBPACK_IMPORTED_MODULE_1__["NotFoundComponent"] },
     { path: 'account/logout', component: _security_login_logout_component__WEBPACK_IMPORTED_MODULE_3__["LogoutComponent"] },
     { path: 'account/login', component: _security_login_login_component__WEBPACK_IMPORTED_MODULE_2__["LoginComponent"], data: { breadcrumb: 'Login' } },
-    { path: 'account/signup', component: _security_sign_up_sign_up_component__WEBPACK_IMPORTED_MODULE_5__["SignUpComponent"], data: { breadcrumb: 'Sign up' } },
+    { path: 'account/signup', component: _security_sign_up_sign_up_component__WEBPACK_IMPORTED_MODULE_4__["SignUpComponent"], data: { breadcrumb: 'Sign up' } },
 ];
 
 
