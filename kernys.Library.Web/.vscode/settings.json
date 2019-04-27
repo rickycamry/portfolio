@@ -1,0 +1,4 @@
+{
+    "appService.defaultWebAppToDeploy": "/subscriptions/e11f9022-1893-4da3-89f4-42a5fc1307c6/resourceGroups/appsvc_rg_windows_centralus/providers/Microsoft.Web/sites/kernysLibrary",
+    "appService.deploySubpath": ""
+}

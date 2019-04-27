@@ -23,20 +23,18 @@ namespace kernys.Library.Web.Controllers
     {
 
         private readonly SignInManager<LibraryUser> _singInManager;
-        private readonly UserManager<LibraryUser> _userManager;
         private readonly RoleManager<IdentityRole> _roleManager;
         private readonly IConfiguration _configuration;
 
-        public UserManager<LibraryUser> UserManager { get; private set; }
+      
 
 
         public AccountController(SignInManager<LibraryUser> singInManager,
                                  UserManager<LibraryUser> userManager,
                                  RoleManager<IdentityRole> roleManager,
-                                 IConfiguration configuration)
+                                 IConfiguration configuration):base(userManager)
         {
             this._singInManager = singInManager;
-            this._userManager = userManager;
             this._roleManager = roleManager;
             this._configuration = configuration;
 
@@ -166,7 +164,8 @@ namespace kernys.Library.Web.Controllers
                  new Claim(JwtRegisteredClaimNames.Iat, new DateTimeOffset(now).ToUnixTimeSeconds().ToString()),
 
                  //add additional claims here
-                 new Claim(JwtRegisteredClaimNames.NameId, user.DisplayName)
+                 new Claim(JwtRegisteredClaimNames.UniqueName, user.UserName),
+                 new Claim(JwtRegisteredClaimNames.GivenName, user.DisplayName)
 
             };
 

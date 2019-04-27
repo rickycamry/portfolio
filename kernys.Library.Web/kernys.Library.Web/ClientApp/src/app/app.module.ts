@@ -16,17 +16,21 @@ import { HtppInterceptorModule } from './security/http-interceptor';
 import { LogoutComponent } from './security/login/logout.component';
 import { SignUpComponent } from './security/sign-up/sign-up.component';
 import { TOASTR_TOKEN,Toastr } from './core/interfaces/toastr';
+import { JQUERY_TOKEN } from './core/interfaces/jquery';
+
 import { ProfileComponent } from './profile/profile.component';
 import { BookListComponent } from './book/list/book-list.component';
+import { BookModule } from './book/book.module';
+import { BookListItemComponent } from './book/list/book-list-item.component';
 
 let toastr:Toastr=window['toastr'];
+let jQuery:any=window['$']
 
 @NgModule({
   declarations: [
     LibraryAppComponent,
     NavMenuComponent,
     BreadcrumbComponent,
-    BookListComponent,
     NotFoundComponent,
     LoginComponent,
     LogoutComponent,
@@ -40,10 +44,15 @@ let toastr:Toastr=window['toastr'];
     FormsModule,
     ReactiveFormsModule,
     RouterModule.forRoot(LibraryRoutes),
-    HtppInterceptorModule
+    HtppInterceptorModule,
+    BookModule
   ],
   providers: [
-    {provide:TOASTR_TOKEN, useValue:toastr}
+    {provide:TOASTR_TOKEN, useValue:toastr},
+    {provide:JQUERY_TOKEN, useValue:jQuery}
+
+  ],
+  exports:[
   ],
   bootstrap: [LibraryAppComponent]
 })

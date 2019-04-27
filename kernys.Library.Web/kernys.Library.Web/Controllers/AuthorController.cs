@@ -6,8 +6,10 @@ using kernys.Library.Core.Models;
 using kernys.Library.Web.ViewModel;
 using Kernys.Library.Service.Interfaces;
 using Mapster;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
+using Microsoft.AspNetCore.Authorization;
 
 namespace kernys.Library.Web.Controllers
 {
@@ -17,13 +19,15 @@ namespace kernys.Library.Web.Controllers
 
 
         private IAuthorService _service;
-        public AuthorController(IAuthorService service)
+        public AuthorController(IAuthorService service,UserManager<LibraryUser> userManager)
+        :base(userManager)
         {
             this._service = service;
         }
 
 
         [HttpGet]
+        [AllowAnonymous]
         public IActionResult Get()
         {
             try
@@ -43,6 +47,7 @@ namespace kernys.Library.Web.Controllers
         }
 
         [HttpGet("{id}")]
+        [AllowAnonymous]
         public IActionResult Get(int id)
         {
             try

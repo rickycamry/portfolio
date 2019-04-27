@@ -13,8 +13,7 @@ var map = {
 		"author-author-module"
 	],
 	"./book/book.module": [
-		"./src/app/book/book.module.ts",
-		"book-book-module"
+		"./src/app/book/book.module.ts"
 	]
 };
 function webpackAsyncContext(req) {
@@ -26,7 +25,7 @@ function webpackAsyncContext(req) {
 			throw e;
 		});
 	}
-	return __webpack_require__.e(ids[1]).then(function() {
+	return Promise.all(ids.slice(1).map(__webpack_require__.e)).then(function() {
 		var id = ids[0];
 		return __webpack_require__(id);
 	});
@@ -66,8 +65,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _security_login_logout_component__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./security/login/logout.component */ "./src/app/security/login/logout.component.ts");
 /* harmony import */ var _security_sign_up_sign_up_component__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./security/sign-up/sign-up.component */ "./src/app/security/sign-up/sign-up.component.ts");
 /* harmony import */ var _core_interfaces_toastr__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./core/interfaces/toastr */ "./src/app/core/interfaces/toastr.ts");
-/* harmony import */ var _profile_profile_component__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./profile/profile.component */ "./src/app/profile/profile.component.ts");
-/* harmony import */ var _book_list_book_list_component__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ./book/list/book-list.component */ "./src/app/book/list/book-list.component.ts");
+/* harmony import */ var _core_interfaces_jquery__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./core/interfaces/jquery */ "./src/app/core/interfaces/jquery.ts");
+/* harmony import */ var _profile_profile_component__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ./profile/profile.component */ "./src/app/profile/profile.component.ts");
+/* harmony import */ var _book_book_module__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! ./book/book.module */ "./src/app/book/book.module.ts");
 
 
 
@@ -88,7 +88,9 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+
 var toastr = window['toastr'];
+var jQuery = window['$'];
 var AppModule = /** @class */ (function () {
     function AppModule() {
     }
@@ -98,12 +100,11 @@ var AppModule = /** @class */ (function () {
                 _library_app_component__WEBPACK_IMPORTED_MODULE_5__["LibraryAppComponent"],
                 _layout_nav_menu_nav_menu_component__WEBPACK_IMPORTED_MODULE_6__["NavMenuComponent"],
                 _layout_breadcrumb_breadcrumb_component__WEBPACK_IMPORTED_MODULE_10__["BreadcrumbComponent"],
-                _book_list_book_list_component__WEBPACK_IMPORTED_MODULE_18__["BookListComponent"],
                 _error_404__WEBPACK_IMPORTED_MODULE_8__["NotFoundComponent"],
                 _security_login_login_component__WEBPACK_IMPORTED_MODULE_11__["LoginComponent"],
                 _security_login_logout_component__WEBPACK_IMPORTED_MODULE_14__["LogoutComponent"],
                 _security_sign_up_sign_up_component__WEBPACK_IMPORTED_MODULE_15__["SignUpComponent"],
-                _profile_profile_component__WEBPACK_IMPORTED_MODULE_17__["ProfileComponent"]
+                _profile_profile_component__WEBPACK_IMPORTED_MODULE_18__["ProfileComponent"]
             ],
             imports: [
                 _angular_platform_browser__WEBPACK_IMPORTED_MODULE_1__["BrowserModule"],
@@ -112,17 +113,119 @@ var AppModule = /** @class */ (function () {
                 _angular_forms__WEBPACK_IMPORTED_MODULE_12__["FormsModule"],
                 _angular_forms__WEBPACK_IMPORTED_MODULE_12__["ReactiveFormsModule"],
                 _angular_router__WEBPACK_IMPORTED_MODULE_3__["RouterModule"].forRoot(_library_app_routes__WEBPACK_IMPORTED_MODULE_7__["LibraryRoutes"]),
-                _security_http_interceptor__WEBPACK_IMPORTED_MODULE_13__["HtppInterceptorModule"]
+                _security_http_interceptor__WEBPACK_IMPORTED_MODULE_13__["HtppInterceptorModule"],
+                _book_book_module__WEBPACK_IMPORTED_MODULE_19__["BookModule"]
             ],
             providers: [
-                { provide: _core_interfaces_toastr__WEBPACK_IMPORTED_MODULE_16__["TOASTR_TOKEN"], useValue: toastr }
+                { provide: _core_interfaces_toastr__WEBPACK_IMPORTED_MODULE_16__["TOASTR_TOKEN"], useValue: toastr },
+                { provide: _core_interfaces_jquery__WEBPACK_IMPORTED_MODULE_17__["JQUERY_TOKEN"], useValue: jQuery }
             ],
+            exports: [],
             bootstrap: [_library_app_component__WEBPACK_IMPORTED_MODULE_5__["LibraryAppComponent"]]
         })
     ], AppModule);
     return AppModule;
 }());
 
+
+
+/***/ }),
+
+/***/ "./src/app/book/book.module.ts":
+/*!*************************************!*\
+  !*** ./src/app/book/book.module.ts ***!
+  \*************************************/
+/*! exports provided: BookModule */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "BookModule", function() { return BookModule; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "../node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "../node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/common */ "../node_modules/@angular/common/fesm5/common.js");
+/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/common/http */ "../node_modules/@angular/common/fesm5/http.js");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/router */ "../node_modules/@angular/router/fesm5/router.js");
+/* harmony import */ var _book_routes__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./book.routes */ "./src/app/book/book.routes.ts");
+/* harmony import */ var _detail_book_detail_component__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./detail/book-detail.component */ "./src/app/book/detail/book-detail.component.ts");
+/* harmony import */ var _utilies_utilies_module__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../utilies/utilies.module */ "./src/app/utilies/utilies.module.ts");
+/* harmony import */ var _create_book_create_component__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./create/book-create.component */ "./src/app/book/create/book-create.component.ts");
+/* harmony import */ var _edit_book_edit_component__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./edit/book-edit.component */ "./src/app/book/edit/book-edit.component.ts");
+/* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @angular/forms */ "../node_modules/@angular/forms/fesm5/forms.js");
+/* harmony import */ var _list_user_book_list_component__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./list/user-book-list.component */ "./src/app/book/list/user-book-list.component.ts");
+/* harmony import */ var _list_book_list_item_component__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./list/book-list-item.component */ "./src/app/book/list/book-list-item.component.ts");
+/* harmony import */ var _list_book_list_component__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./list/book-list.component */ "./src/app/book/list/book-list.component.ts");
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+var BookModule = /** @class */ (function () {
+    function BookModule() {
+    }
+    BookModule = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["NgModule"])({
+            declarations: [
+                _detail_book_detail_component__WEBPACK_IMPORTED_MODULE_6__["BookDetailComponent"],
+                _create_book_create_component__WEBPACK_IMPORTED_MODULE_8__["BookCreateComponent"],
+                _edit_book_edit_component__WEBPACK_IMPORTED_MODULE_9__["BookEditComponent"],
+                _list_user_book_list_component__WEBPACK_IMPORTED_MODULE_11__["UserBookListComponent"],
+                _list_book_list_component__WEBPACK_IMPORTED_MODULE_13__["BookListComponent"],
+                _list_book_list_item_component__WEBPACK_IMPORTED_MODULE_12__["BookListItemComponent"],
+            ],
+            imports: [
+                _angular_common__WEBPACK_IMPORTED_MODULE_2__["CommonModule"],
+                _angular_common_http__WEBPACK_IMPORTED_MODULE_3__["HttpClientModule"],
+                _utilies_utilies_module__WEBPACK_IMPORTED_MODULE_7__["UtilitiesModule"],
+                _angular_forms__WEBPACK_IMPORTED_MODULE_10__["FormsModule"],
+                _angular_forms__WEBPACK_IMPORTED_MODULE_10__["ReactiveFormsModule"],
+                _angular_router__WEBPACK_IMPORTED_MODULE_4__["RouterModule"].forChild(_book_routes__WEBPACK_IMPORTED_MODULE_5__["BookRoutes"])
+            ],
+            exports: [
+                _list_user_book_list_component__WEBPACK_IMPORTED_MODULE_11__["UserBookListComponent"]
+            ]
+        })
+    ], BookModule);
+    return BookModule;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/book/book.routes.ts":
+/*!*************************************!*\
+  !*** ./src/app/book/book.routes.ts ***!
+  \*************************************/
+/*! exports provided: BookRoutes */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "BookRoutes", function() { return BookRoutes; });
+/* harmony import */ var _detail_book_detail_component__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./detail/book-detail.component */ "./src/app/book/detail/book-detail.component.ts");
+/* harmony import */ var _detail_book_detail_guard__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./detail/book-detail.guard */ "./src/app/book/detail/book-detail.guard.ts");
+/* harmony import */ var _edit_book_edit_component__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./edit/book-edit.component */ "./src/app/book/edit/book-edit.component.ts");
+/* harmony import */ var _list_book_list_component__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./list/book-list.component */ "./src/app/book/list/book-list.component.ts");
+
+
+
+
+var BookRoutes = [
+    { path: '', component: _list_book_list_component__WEBPACK_IMPORTED_MODULE_3__["BookListComponent"], data: { breadcrumb: 'Books' } },
+    { path: 'book/create', component: _edit_book_edit_component__WEBPACK_IMPORTED_MODULE_2__["BookEditComponent"], canActivate: [_detail_book_detail_guard__WEBPACK_IMPORTED_MODULE_1__["BookDetailGuard"]], data: { breadcrumb: 'Edit' } },
+    { path: 'edit/:id', component: _edit_book_edit_component__WEBPACK_IMPORTED_MODULE_2__["BookEditComponent"], canActivate: [_detail_book_detail_guard__WEBPACK_IMPORTED_MODULE_1__["BookDetailGuard"]], data: { breadcrumb: 'Edit' } },
+    { path: 'book/:id', component: _detail_book_detail_component__WEBPACK_IMPORTED_MODULE_0__["BookDetailComponent"], data: { breadcrumb: 'Details' } },
+];
 
 
 /***/ }),
@@ -147,14 +250,31 @@ var BookService = /** @class */ (function () {
     function BookService(http, baseURl) {
         this.http = http;
         this.baseURl = baseURl;
+        this.baseURl += 'api/book';
     }
     BookService.prototype.getBooks = function () {
-        var url = this.baseURl + 'api/book';
+        return this.http.get(this.baseURl);
+    };
+    BookService.prototype.getUserBooks = function () {
+        var url = this.baseURl + '/userbooks';
+        return this.http.get(url);
+    };
+    BookService.prototype.getUserBook = function (bookId) {
+        var url = this.baseURl + '/userbook/' + bookId;
         return this.http.get(url);
     };
     BookService.prototype.getBook = function (id) {
-        var url = this.baseURl + 'api/book/' + id;
+        var url = this.baseURl + '/' + id;
         return this.http.get(url);
+    };
+    BookService.prototype.addBook = function (book) {
+        return this.http.post(this.baseURl, book);
+    };
+    BookService.prototype.updateBook = function (book) {
+        return this.http.put(this.baseURl, book);
+    };
+    BookService.prototype.deleteBook = function (bookId) {
+        return this.http.delete(this.baseURl + '/' + bookId);
     };
     BookService = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_2__["Injectable"])({
@@ -170,14 +290,336 @@ var BookService = /** @class */ (function () {
 
 /***/ }),
 
-/***/ "./src/app/book/list/book-list.component.html":
+/***/ "./src/app/book/create/book-create.component.html":
+/*!********************************************************!*\
+  !*** ./src/app/book/create/book-create.component.html ***!
+  \********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "<h2>Create a new book</h2>"
+
+/***/ }),
+
+/***/ "./src/app/book/create/book-create.component.ts":
+/*!******************************************************!*\
+  !*** ./src/app/book/create/book-create.component.ts ***!
+  \******************************************************/
+/*! exports provided: BookCreateComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "BookCreateComponent", function() { return BookCreateComponent; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "../node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "../node_modules/@angular/core/fesm5/core.js");
+
+
+var BookCreateComponent = /** @class */ (function () {
+    function BookCreateComponent() {
+    }
+    BookCreateComponent.prototype.ngOnInit = function () {
+    };
+    BookCreateComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
+            template: __webpack_require__(/*! ./book-create.component.html */ "./src/app/book/create/book-create.component.html")
+        }),
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [])
+    ], BookCreateComponent);
+    return BookCreateComponent;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/book/detail/book-detail.component.html":
+/*!********************************************************!*\
+  !*** ./src/app/book/detail/book-detail.component.html ***!
+  \********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "\r\n <h3>{{book.Title}}</h3>\r\n <br/>\r\n <div class=\"card mb-12\" style=\"max-width: 940px;\">\r\n     <div class=\"row no-gutters\">\r\n       <div class=\"col-md-4\">\r\n         <img [src]=\"book.PhotoUrl\" class=\"card-img\" alt=\"...\">\r\n       </div>\r\n       <div class=\"col-md-8\">\r\n         <div class=\"card-body\">\r\n           <p class=\"card-text\">Language: {{book.Language}}</p>\r\n           <p class=\"card-text\">Author:</p>\r\n           <ul>\r\n             <li *ngFor=\"let a of book?.Authors\">\r\n               <a [routerLink]=\"['/author/', a.Id]\">{{a.FirstName}} {{a.LastName}}</a>\r\n             </li>\r\n           </ul>\r\n           <p class=\"card-text\">Publisher: {{book?.Publisher?.Name}}</p>\r\n           <p class=\"card-text\">Price: {{book.Price | currency:'USD'}}</p>\r\n \r\n           <p class=\"card-text\"><small class=\"text-muted\">Year: {{book.Year}}</small></p>\r\n           <p class=\"card-text\"><small class=\"text-muted\">ISBN: {{book.ISBN}}</small></p>\r\n           <h5>Description</h5>\r\n           <h5 class=\"card-title\">{{book.Description}}</h5>\r\n         </div>\r\n         <div class=\"card-footer bg-transparent border-success\">\r\n           <button type=\"button\" class=\"btn btn-secondary btn-sm\" [routerLink]=\"['/']\">Go Back</button>\r\n         </div>\r\n       </div>\r\n     </div>\r\n   </div>"
+
+/***/ }),
+
+/***/ "./src/app/book/detail/book-detail.component.ts":
+/*!******************************************************!*\
+  !*** ./src/app/book/detail/book-detail.component.ts ***!
+  \******************************************************/
+/*! exports provided: BookDetailComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "BookDetailComponent", function() { return BookDetailComponent; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "../node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "../node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _book_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../book.service */ "./src/app/book/book.service.ts");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/router */ "../node_modules/@angular/router/fesm5/router.js");
+
+
+
+
+var BookDetailComponent = /** @class */ (function () {
+    function BookDetailComponent(bookService, actRoute) {
+        this.bookService = bookService;
+        this.actRoute = actRoute;
+    }
+    BookDetailComponent.prototype.ngOnInit = function () {
+        var _this = this;
+        var bookId = +this.actRoute.snapshot.params["id"];
+        this.bookService.getBook(bookId).subscribe(function (x) {
+            return _this.book = x;
+        });
+    };
+    BookDetailComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
+            template: __webpack_require__(/*! ./book-detail.component.html */ "./src/app/book/detail/book-detail.component.html")
+        }),
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_book_service__WEBPACK_IMPORTED_MODULE_2__["BookService"],
+            _angular_router__WEBPACK_IMPORTED_MODULE_3__["ActivatedRoute"]])
+    ], BookDetailComponent);
+    return BookDetailComponent;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/book/detail/book-detail.guard.ts":
+/*!**************************************************!*\
+  !*** ./src/app/book/detail/book-detail.guard.ts ***!
+  \**************************************************/
+/*! exports provided: BookDetailGuard */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "BookDetailGuard", function() { return BookDetailGuard; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "../node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "../node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/router */ "../node_modules/@angular/router/fesm5/router.js");
+/* harmony import */ var _security_security_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../security/security.service */ "./src/app/security/security.service.ts");
+
+
+
+
+var BookDetailGuard = /** @class */ (function () {
+    function BookDetailGuard(router, securityService) {
+        this.router = router;
+        this.securityService = securityService;
+    }
+    BookDetailGuard.prototype.canActivate = function (next, state) {
+        var isAuthorized = this.securityService.getAuth() ? true : false;
+        if (!isAuthorized) {
+            this.router.navigate(['account/login']);
+        }
+        return true;
+    };
+    ;
+    BookDetailGuard = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])({
+            providedIn: 'root'
+        }),
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"], _security_security_service__WEBPACK_IMPORTED_MODULE_3__["SecurityService"]])
+    ], BookDetailGuard);
+    return BookDetailGuard;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/book/edit/book-edit.component.html":
 /*!****************************************************!*\
-  !*** ./src/app/book/list/book-list.component.html ***!
+  !*** ./src/app/book/edit/book-edit.component.html ***!
   \****************************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<h2> List of books 2</h2>\r\n \r\n\r\n\r\n<div class=\"card-deck\">\r\n<div class=\"row\">\r\n  <div class=\"col-4\" *ngFor=\"let b of books\">\r\n    <img src=\"{{b.PhotoUrl}}\" width=\"80%\" height=\"300px\">\r\n    <div class=\"card-body\">\r\n      <h5 class=\"card-title\">{{b.Title}}</h5>\r\n      <p class=\"card-text\">{{b.Description | reduceParagraph:200}}</p>\r\n      <p class=\"card-text\"><small class=\"text-muted\">ISBN:{{b.ISBN}}</small></p>\r\n       <ul>\r\n       <li *ngFor=\"let a of b.Authors\" >\r\n        <a [routerLink]=\"['/author/',a.Id]\">{{a.FirstName}} {{a.LastName}}</a>   \r\n       </li>\r\n       </ul>\r\n      <button type=\"button\" class=\"btn btn-primary btn-sm\" (click)=\"handleDetail(b)\">Detail</button>\r\n    </div>\r\n  </div>\r\n  </div>\r\n</div>"
+module.exports = "<div class=\"quiz-edit\">\r\n    <h2>{{pageTitle}}</h2>\r\n    <form [formGroup]=\"form\" (ngSubmit)=\"onSubmit()\">\r\n        <div class=\"form-group\" [ngClass]=\"{ 'has-error has-feedback' :hasError('Title')}\">\r\n            <label for=\"title\">Book title:</label>\r\n            <br />\r\n            <input type=\"text\" id=\"title\" formControlName=\"Title\" required placeholder=\"choose a title...\"\r\n                class=\"form-control\" />\r\n            <span *ngIf=\"hasError('Title')\" class=\"glyphicon glyphicon-remove form-control-feedback\"\r\n                aria-hidden=\"true\"></span>\r\n            <div *ngIf=\"hasError('Title')\" class=\"help-block\">\r\n                Title is a required field: please insert a valid title.\r\n            </div>\r\n        </div>\r\n        <div class=\"form-group\">\r\n            <label for=\"Image\">Book Image:</label>\r\n            <br />\r\n            <input type=\"file\" id=\"PhotoUrl\" formControlName=\"PhotoUrl\" placeholder=\"enter a ISBN...\" class=\"form-control\" />\r\n        </div>\r\n        <div class=\"form-group\">\r\n            <label for=\"ISBN\">Book ISBN:</label>\r\n            <br />\r\n            <input type=\"text\" id=\"ISBN\" formControlName=\"ISBN\" placeholder=\"enter a ISBN...\" class=\"form-control\" />\r\n        </div>\r\n        <div class=\"form-group\">\r\n            <label for=\"Language\">Book Language:</label>\r\n            <br />\r\n            <select formControlName=\"Language\" class=\"form-control\">\r\n                <option value=\"\">Select a Language</option>\r\n                <option value=\"English\">English</option>\r\n                <option value=\"Spanish\">Spanish</option>\r\n                <option value=\"French\">French</option>\r\n            </select>\r\n        </div>\r\n        <div class=\"form-group\">\r\n            <label for=\"Price\">Book Price:</label>\r\n            <br />\r\n            <input type=\"number\" id=\"Price\" formControlName=\"Price\" placeholder=\"enter a Price...\"\r\n                class=\"form-control\" />\r\n        </div>\r\n        <div class=\"form-group\">\r\n            <label for=\"Year\">Book Year:</label>\r\n            <br />\r\n            <input type=\"text\" id=\"Year\" formControlName=\"Year\" placeholder=\"enter a Year...\" class=\"form-control\" />\r\n        </div>\r\n        <div class=\"form-group\">\r\n            <label for=\"Description\">Book Description :</label>\r\n            <br />\r\n            <textarea id=\"Description\" formControlName=\"Description\" placeholder=\"enter the description...\"\r\n                class=\"form-control\"></textarea>\r\n        </div>\r\n        <div class=\"form-group commands\">\r\n            <button *ngIf=\"isEditMode\" type=\"submit\" [disabled]=\"form.invalid\" class=\"btn btn-success\">\r\n                Apply Changes\r\n            </button>\r\n            <button *ngIf=\"!isEditMode\" type=\"submit\" [disabled]=\"form.invalid\" class=\"btn btn-success\">\r\n                Create the book!\r\n            </button>\r\n            <button type=\"button\" *ngIf=\"isEditMode\" (click)=\"onDelete()\" class=\"btn btn-danger\">\r\n                Delete\r\n            </button>\r\n            <button type=\"submit\" [routerLink]=\"['/profile']\" class=\"btn btn-default\">\r\n                Go back\r\n            </button>\r\n         \r\n\r\n        </div>\r\n    </form>\r\n    <!-- <question-list *ngIf=\"editMode\" [quiz]=\"quiz\"></question-list>\r\n\r\n    <result-list *ngIf=\"editMode\" [quiz]=\"quiz\"></result-list> -->\r\n\r\n</div>"
+
+/***/ }),
+
+/***/ "./src/app/book/edit/book-edit.component.ts":
+/*!**************************************************!*\
+  !*** ./src/app/book/edit/book-edit.component.ts ***!
+  \**************************************************/
+/*! exports provided: BookEditComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "BookEditComponent", function() { return BookEditComponent; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "../node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "../node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/forms */ "../node_modules/@angular/forms/fesm5/forms.js");
+/* harmony import */ var src_app_core_baseForm__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! src/app/core/baseForm */ "./src/app/core/baseForm.ts");
+/* harmony import */ var src_app_core_interfaces_toastr__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! src/app/core/interfaces/toastr */ "./src/app/core/interfaces/toastr.ts");
+/* harmony import */ var _book_service__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../book.service */ "./src/app/book/book.service.ts");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @angular/router */ "../node_modules/@angular/router/fesm5/router.js");
+
+
+
+
+
+
+
+var BookEditComponent = /** @class */ (function (_super) {
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__extends"](BookEditComponent, _super);
+    function BookEditComponent(_toastr, bookService, fb, router, activatedRoute) {
+        var _this = _super.call(this, _toastr) || this;
+        _this.bookService = bookService;
+        _this.fb = fb;
+        _this.router = router;
+        _this.activatedRoute = activatedRoute;
+        _this.pageTitle;
+        _this.book = {};
+        _this.isEditMode = _this.activatedRoute.snapshot.routeConfig.path != "book/create";
+        _this.pageTitle = _this.isEditMode ? "Edit book" : 'Create book';
+        return _this;
+    }
+    BookEditComponent.prototype.ngOnInit = function () {
+        var _this = this;
+        if (this.isEditMode) {
+            var bookId = +this.activatedRoute.snapshot.params["id"];
+            this.createForm();
+            this.bookService.getUserBook(bookId)
+                .subscribe(function (b) {
+                _this.book = b;
+                _this.updateForm();
+            }, function (error) {
+                _this.toastr.error(error);
+                _this.router.navigate['/profile'];
+            });
+        }
+        else {
+            this.createForm();
+        }
+    };
+    BookEditComponent.prototype.updateForm = function () {
+        this.form.setValue({
+            ISBN: this.book.ISBN,
+            Title: this.book.Title,
+            Description: this.book.Description,
+            Language: this.book.Language,
+            Price: this.book.Price,
+            Year: this.book.Year
+        });
+    };
+    BookEditComponent.prototype.createForm = function () {
+        this.form = this.fb.group({
+            ISBN: new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormControl"]('', [_angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required, _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].maxLength(10), _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].minLength(10)]),
+            Title: ['', [_angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required]],
+            Description: ['', [_angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required]],
+            Language: ['', [_angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required]],
+            Price: [0, [_angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required]],
+            Year: [0, [_angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required]],
+        });
+    };
+    BookEditComponent.prototype.onDelete = function () {
+        var _this = this;
+        if (confirm("Do you realy want to delete this book \"" + this.book.Title + "\".")) {
+            this.bookService.deleteBook(this.book.Id)
+                .subscribe(function (resp) {
+                _this.toastr.success("The book \"" + _this.book.Title + "\" has been deleted.");
+                _this.router.navigate(['/profile']);
+            }, function (error) { _this.toastr.error(error.error); });
+        }
+    };
+    BookEditComponent.prototype.onSubmit = function () {
+        var _this = this;
+        if (!this.form.invalid) {
+            if (this.isEditMode) {
+                var bookId = this.book.Id;
+                this.book = this.form.value;
+                this.book.Id = bookId;
+                this.bookService.updateBook(this.book).subscribe(function (resp) {
+                    _this.toastr.success("The book \"" + _this.book.Title + "\" has been updated successfully.");
+                    _this.router.navigate(['/profile']);
+                }, function (error) {
+                    _this.toastr.error(error.error);
+                    console.log(error);
+                });
+            }
+            else {
+                this.book = this.form.value;
+                this.bookService.addBook(this.book).subscribe(function (resp) {
+                    _this.toastr.success("The book \"" + _this.book.Title + "\" has been added successfully.");
+                    _this.router.navigate(['/profile']);
+                }, function (error) {
+                    _this.toastr.error(error.error);
+                });
+            }
+        }
+    };
+    BookEditComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
+            template: __webpack_require__(/*! ./book-edit.component.html */ "./src/app/book/edit/book-edit.component.html"),
+            styles: ["\n       button{\n         margin-left:10px;\n\n       }\n    "]
+        }),
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__param"](0, Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Inject"])(src_app_core_interfaces_toastr__WEBPACK_IMPORTED_MODULE_4__["TOASTR_TOKEN"])),
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [Object, _book_service__WEBPACK_IMPORTED_MODULE_5__["BookService"],
+            _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormBuilder"],
+            _angular_router__WEBPACK_IMPORTED_MODULE_6__["Router"],
+            _angular_router__WEBPACK_IMPORTED_MODULE_6__["ActivatedRoute"]])
+    ], BookEditComponent);
+    return BookEditComponent;
+}(src_app_core_baseForm__WEBPACK_IMPORTED_MODULE_3__["BaseForm"]));
+
+
+
+/***/ }),
+
+/***/ "./src/app/book/list/book-list-item.component.html":
+/*!*********************************************************!*\
+  !*** ./src/app/book/list/book-list-item.component.html ***!
+  \*********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "    <img src=\"{{book.PhotoUrl}}\" width=\"80%\" height=\"300px\" [routerLink]=\"['/book/',book.Id]\">\r\n    <div class=\"card-body\">\r\n      <h5 class=\"card-title\">{{book.Title}}</h5>\r\n      <p class=\"card-text\">{{book.Description | reduceParagraph:200}}</p>\r\n      <p class=\"card-text\"><small class=\"text-muted\">ISBN:{{book.ISBN}}</small></p>\r\n       <ul>\r\n       <li *ngFor=\"let a of book.Authors\" >\r\n        <a [routerLink]=\"['/author/',a.Id]\">{{a.FirstName}} {{a.LastName}}</a>   \r\n       </li>\r\n       </ul>\r\n      <button type=\"button\" class=\"btn btn-secondary btn-sm\" [routerLink]=\"['/book/',book.Id]\">Detail</button>\r\n      <button type=\"button\" *ngIf=\"isProfile\" class=\"btn btn-primary btn-sm\" [routerLink]=\"['/book/edit',book.Id]\">Edit</button>\r\n    </div>\r\n "
+
+/***/ }),
+
+/***/ "./src/app/book/list/book-list-item.component.ts":
+/*!*******************************************************!*\
+  !*** ./src/app/book/list/book-list-item.component.ts ***!
+  \*******************************************************/
+/*! exports provided: BookListItemComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "BookListItemComponent", function() { return BookListItemComponent; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "../node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "../node_modules/@angular/core/fesm5/core.js");
+
+
+var BookListItemComponent = /** @class */ (function () {
+    function BookListItemComponent() {
+    }
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Input"])(),
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:type", Object)
+    ], BookListItemComponent.prototype, "book", void 0);
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Input"])(),
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:type", Boolean)
+    ], BookListItemComponent.prototype, "isProfile", void 0);
+    BookListItemComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
+            selector: 'book-list-item',
+            template: __webpack_require__(/*! ./book-list-item.component.html */ "./src/app/book/list/book-list-item.component.html"),
+            styles: ["\n       button{\n           margin-left:5px\n       }\n    "]
+        })
+    ], BookListItemComponent);
+    return BookListItemComponent;
+}());
+
+
 
 /***/ }),
 
@@ -210,13 +652,11 @@ var BookListComponent = /** @class */ (function () {
             _this.books = x;
         });
     };
-    BookListComponent.prototype.handleDetail = function (b) {
-        this.route.navigate(['/book/', b.Id]);
-    };
     BookListComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
             selector: 'books',
-            template: __webpack_require__(/*! ./book-list.component.html */ "./src/app/book/list/book-list.component.html")
+            //templateUrl:'book-list.component.html'
+            template: "\n  <h2> List of books 2</h2>\n  \n  <div class=\"card-deck\">\n    <div class=\"row\">\n     <div class=\"col-4\" *ngFor=\"let b of books\">\n       <book-list-item [book]=\"b\"></book-list-item>\n     </div>\n     </div>\n   </div>\n  "
         }),
         tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_book_service__WEBPACK_IMPORTED_MODULE_3__["BookService"],
             _angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"]])
@@ -228,44 +668,51 @@ var BookListComponent = /** @class */ (function () {
 
 /***/ }),
 
-/***/ "./src/app/book/list/book-list.guard.ts":
-/*!**********************************************!*\
-  !*** ./src/app/book/list/book-list.guard.ts ***!
-  \**********************************************/
-/*! exports provided: BookListGuard */
+/***/ "./src/app/book/list/user-book-list.component.ts":
+/*!*******************************************************!*\
+  !*** ./src/app/book/list/user-book-list.component.ts ***!
+  \*******************************************************/
+/*! exports provided: UserBookListComponent */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "BookListGuard", function() { return BookListGuard; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "UserBookListComponent", function() { return UserBookListComponent; });
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "../node_modules/tslib/tslib.es6.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "../node_modules/@angular/core/fesm5/core.js");
-/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/router */ "../node_modules/@angular/router/fesm5/router.js");
-/* harmony import */ var _security_security_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../security/security.service */ "./src/app/security/security.service.ts");
+/* harmony import */ var _book_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../book.service */ "./src/app/book/book.service.ts");
+/* harmony import */ var src_app_core_interfaces_toastr__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! src/app/core/interfaces/toastr */ "./src/app/core/interfaces/toastr.ts");
 
 
 
 
-var BookListGuard = /** @class */ (function () {
-    function BookListGuard(router, securityService) {
-        this.router = router;
-        this.securityService = securityService;
+var UserBookListComponent = /** @class */ (function () {
+    function UserBookListComponent(bookService, toastr) {
+        this.bookService = bookService;
+        this.toastr = toastr;
+        this.isProfile = false;
     }
-    BookListGuard.prototype.canActivate = function (next, state) {
-        var isAuthorized = this.securityService.getAuth() ? true : false;
-        if (!isAuthorized) {
-            this.router.navigate(['account/login']);
-        }
-        return true;
+    UserBookListComponent.prototype.ngOnInit = function () {
+        var _this = this;
+        this.bookService.getUserBooks().subscribe(function (books) {
+            _this.books = books;
+        }, function (error) {
+            _this.toastr.error(error.error);
+        });
     };
-    ;
-    BookListGuard = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
-        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])({
-            providedIn: 'root'
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Input"])(),
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:type", Boolean)
+    ], UserBookListComponent.prototype, "isProfile", void 0);
+    UserBookListComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
+            selector: 'user-book-list',
+            template: "\n    <h2> Your list of books </h2>\n    <br/>\n    <button type=\"button\" [routerLink]=\"['/book/create']\" class=\"btn btn-primary btn-sm\">Add new book</button>\n    <br/>\n    <br/>\n\n    <div class=\"card-deck\">\n      <div class=\"row\">\n\n       <div class=\"col-4\" *ngFor=\"let b of books\">\n       <book-list-item [book]=\"b\" [isProfile]=\"isProfile\"></book-list-item>\n       </div>\n       </div>\n     </div>\n    "
         }),
-        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"], _security_security_service__WEBPACK_IMPORTED_MODULE_3__["SecurityService"]])
-    ], BookListGuard);
-    return BookListGuard;
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__param"](1, Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Inject"])(src_app_core_interfaces_toastr__WEBPACK_IMPORTED_MODULE_3__["TOASTR_TOKEN"])),
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_book_service__WEBPACK_IMPORTED_MODULE_2__["BookService"], Object])
+    ], UserBookListComponent);
+    return UserBookListComponent;
 }());
 
 
@@ -341,6 +788,23 @@ var BaseForm = /** @class */ (function () {
     return BaseForm;
 }());
 
+
+
+/***/ }),
+
+/***/ "./src/app/core/interfaces/jquery.ts":
+/*!*******************************************!*\
+  !*** ./src/app/core/interfaces/jquery.ts ***!
+  \*******************************************/
+/*! exports provided: JQUERY_TOKEN */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "JQUERY_TOKEN", function() { return JQUERY_TOKEN; });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "../node_modules/@angular/core/fesm5/core.js");
+
+var JQUERY_TOKEN = new _angular_core__WEBPACK_IMPORTED_MODULE_0__["InjectionToken"]('jQuery');
 
 
 /***/ }),
@@ -514,7 +978,7 @@ module.exports = "a.navbar-brand {\r\n    white-space: normal;\r\n    text-align
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<!-- <header>\r\n    <nav class='navbar navbar-expand-lg navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3'>\r\n      <div class=\"container\">\r\n        <a class=\"navbar-brand\" [routerLink]='[\"/\"]'>kernys.Library.Web</a>\r\n        <button class=\"navbar-toggler\" type=\"button\" data-toggle=\"collapse\" data-target=\".navbar-collapse\" aria-label=\"Toggle navigation\"\r\n          [attr.aria-expanded]=\"isExpanded\" (click)=\"toggle()\">\r\n          <span class=\"navbar-toggler-icon\"></span>\r\n        </button>\r\n        <div class=\"navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse\" [ngClass]='{\"show\": isExpanded}'>\r\n          <ul class=\"navbar-nav flex-grow\">\r\n            <li class=\"nav-item\" [routerLinkActive]='[\"link-active\"]' [routerLinkActiveOptions]='{ exact: true }'>\r\n              <a class=\"nav-link text-dark\" [routerLink]='[\"/\"]'>Books</a>\r\n            </li>\r\n            <li class=\"nav-item\" [routerLinkActive]='[\"link-active\"]' [routerLinkActiveOptions]='{ exact: true }'>\r\n                <a class=\"nav-link text-dark\" [routerLink]='[\"/authors\"]'>Authors</a>\r\n              </li>\r\n          </ul>\r\n          <form class=\"form-inline my-2 my-lg-0\">\r\n              <input class=\"form-control mr-sm-2\" type=\"search\" placeholder=\"Search\" aria-label=\"Search\">\r\n              <button class=\"btn btn-outline-success my-2 my-sm-0\" type=\"submit\">Search</button>\r\n            </form>\r\n        </div>\r\n      \r\n      </div>\r\n   \r\n    </nav>\r\n  </header>\r\n   -->\r\n  <header>\r\n   <nav class=\"navbar navbar-expand-lg navbar-light bg-light\">\r\n      <a class=\"navbar-brand\" [routerLink]='[\"/\"]'>Kernys</a>\r\n      <button class=\"navbar-toggler\" type=\"button\" data-toggle=\"collapse\" data-target=\"#navbarSupportedContent\" aria-controls=\"navbarSupportedContent\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">\r\n        <span class=\"navbar-toggler-icon\"></span>\r\n      </button>\r\n    \r\n      <div class=\"collapse navbar-collapse\" id=\"navbarSupportedContent\">\r\n        <ul class=\"navbar-nav mr-auto\">\r\n          <li class=\"nav-item active\" [routerLinkActive]='[\"active\"]' [routerLinkActiveOptions]='{ exact: true }'>\r\n            <a class=\"nav-link\" [routerLink]='[\"/\"]'>Books <span class=\"sr-only\">(current)</span></a>\r\n          </li>\r\n          <li class=\"nav-item\" [routerLinkActive]='[\"active\"]' [routerLinkActiveOptions]='{ exact: true }'>\r\n            <a class=\"nav-link\" [routerLink]='[\"/authors\"]'>Authors</a>\r\n          </li>\r\n          <!-- <li class=\"nav-item dropdown\">\r\n            <a class=\"nav-link dropdown-toggle\" href=\"#\" id=\"navbarDropdown\" role=\"button\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">\r\n              Dropdown\r\n            </a>\r\n            <div class=\"dropdown-menu\" aria-labelledby=\"navbarDropdown\">\r\n              <a class=\"dropdown-item\" href=\"#\">Action</a>\r\n              <a class=\"dropdown-item\" href=\"#\">Another action</a>\r\n              <div class=\"dropdown-divider\"></div>\r\n              <a class=\"dropdown-item\" href=\"#\">Something else here</a>\r\n            </div>\r\n          </li>\r\n          <li class=\"nav-item\">\r\n            <a class=\"nav-link disabled\" href=\"#\">Disabled</a>\r\n          </li> -->\r\n        </ul>\r\n      \r\n        <ul class=\"navbar-nav flex-row ml-md-auto d-md-flex\">\r\n            <li class=\"nav-item dropdown\">\r\n                <a class=\"nav-item nav-link mr-md-2\" [routerLink]=\"['account/login']\"  *ngIf=\"!auth\" href=\"#\" id=\"bd-versions\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">\r\n                    Login \r\n                  </a>\r\n                   \r\n              <a class=\"nav-item nav-link dropdown-toggle mr-md-2\" *ngIf=\"auth\" href=\"#\" id=\"bd-versions\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">\r\n                Welcome {{auth.DisplayName}}\r\n              </a>\r\n              <div class=\"dropdown-menu dropdown-menu-right\" *ngIf=\"auth\" aria-labelledby=\"bd-versions\">\r\n                <a class=\"dropdown-item active\" [routerLink]='[\"profile\"]'>Profile</a>\r\n                <div class=\"dropdown-divider\"></div>\r\n                <a class=\"dropdown-item\" href=\"https://v4-alpha.getbootstrap.com/\">v4 Alpha 6</a>\r\n                <div class=\"dropdown-divider\"></div>\r\n                <a class=\"dropdown-item\"  [routerLink]=\"['account/logout']\">Log Out</a>\r\n              </div>\r\n            </li>\r\n        \r\n            <li class=\"nav-item\">\r\n              <a class=\"nav-link p-2\" href=\"https://github.com/twbs/bootstrap\" target=\"_blank\" rel=\"noopener\" aria-label=\"GitHub\"><svg xmlns=\"http://www.w3.org/2000/svg\" class=\"navbar-nav-svg\" viewBox=\"0 0 512 499.36\" role=\"img\" focusable=\"false\"><title>GitHub</title><path fill=\"currentColor\" fill-rule=\"evenodd\" d=\"M256 0C114.64 0 0 114.61 0 256c0 113.09 73.34 209 175.08 242.9 12.8 2.35 17.47-5.56 17.47-12.34 0-6.08-.22-22.18-.35-43.54-71.2 15.49-86.2-34.34-86.2-34.34-11.64-29.57-28.42-37.45-28.42-37.45-23.27-15.84 1.73-15.55 1.73-15.55 25.69 1.81 39.21 26.38 39.21 26.38 22.84 39.12 59.92 27.82 74.5 21.27 2.33-16.54 8.94-27.82 16.25-34.22-56.84-6.43-116.6-28.43-116.6-126.49 0-27.95 10-50.8 26.35-68.69-2.63-6.48-11.42-32.5 2.51-67.75 0 0 21.49-6.88 70.4 26.24a242.65 242.65 0 0 1 128.18 0c48.87-33.13 70.33-26.24 70.33-26.24 14 35.25 5.18 61.27 2.55 67.75 16.41 17.9 26.31 40.75 26.31 68.69 0 98.35-59.85 120-116.88 126.32 9.19 7.9 17.38 23.53 17.38 47.41 0 34.22-.31 61.83-.31 70.23 0 6.85 4.61 14.81 17.6 12.31C438.72 464.97 512 369.08 512 256.02 512 114.62 397.37 0 256 0z\"></path></svg></a>\r\n            </li>\r\n            <li class=\"nav-item\">\r\n              <a class=\"nav-link p-2\" href=\"https://twitter.com/getbootstrap\" target=\"_blank\" rel=\"noopener\" aria-label=\"Twitter\"><svg xmlns=\"http://www.w3.org/2000/svg\" class=\"navbar-nav-svg\" viewBox=\"0 0 512 416.32\" role=\"img\" focusable=\"false\"><title>Twitter</title><path fill=\"currentColor\" d=\"M160.83 416.32c193.2 0 298.92-160.22 298.92-298.92 0-4.51 0-9-.2-13.52A214 214 0 0 0 512 49.38a212.93 212.93 0 0 1-60.44 16.6 105.7 105.7 0 0 0 46.3-58.19 209 209 0 0 1-66.79 25.37 105.09 105.09 0 0 0-181.73 71.91 116.12 116.12 0 0 0 2.66 24c-87.28-4.3-164.73-46.3-216.56-109.82A105.48 105.48 0 0 0 68 159.6a106.27 106.27 0 0 1-47.53-13.11v1.43a105.28 105.28 0 0 0 84.21 103.06 105.67 105.67 0 0 1-47.33 1.84 105.06 105.06 0 0 0 98.14 72.94A210.72 210.72 0 0 1 25 370.84a202.17 202.17 0 0 1-25-1.43 298.85 298.85 0 0 0 160.83 46.92\"></path></svg></a>\r\n            </li>\r\n            <li class=\"nav-item\">\r\n              <a class=\"nav-link p-2\" href=\"https://bootstrap-slack.herokuapp.com/\" target=\"_blank\" rel=\"noopener\" aria-label=\"Slack\"><svg xmlns=\"http://www.w3.org/2000/svg\" class=\"navbar-nav-svg\" viewBox=\"0 0 512 512\" role=\"img\" focusable=\"false\"><title>Slack</title><path fill=\"currentColor\" d=\"M210.787 234.832l68.31-22.883 22.1 65.977-68.309 22.882z\"></path><path fill=\"currentColor\" d=\"M490.54 185.6C437.7 9.59 361.6-31.34 185.6 21.46S-31.3 150.4 21.46 326.4 150.4 543.3 326.4 490.54 543.34 361.6 490.54 185.6zM401.7 299.8l-33.15 11.05 11.46 34.38c4.5 13.92-2.87 29.06-16.78 33.56-2.87.82-6.14 1.64-9 1.23a27.32 27.32 0 0 1-24.56-18l-11.46-34.38-68.36 22.92 11.46 34.38c4.5 13.92-2.87 29.06-16.78 33.56-2.87.82-6.14 1.64-9 1.23a27.32 27.32 0 0 1-24.56-18l-11.46-34.43-33.15 11.05c-2.87.82-6.14 1.64-9 1.23a27.32 27.32 0 0 1-24.56-18c-4.5-13.92 2.87-29.06 16.78-33.56l33.12-11.03-22.1-65.9-33.15 11.05c-2.87.82-6.14 1.64-9 1.23a27.32 27.32 0 0 1-24.56-18c-4.48-13.93 2.89-29.07 16.81-33.58l33.15-11.05-11.46-34.38c-4.5-13.92 2.87-29.06 16.78-33.56s29.06 2.87 33.56 16.78l11.46 34.38 68.36-22.92-11.46-34.38c-4.5-13.92 2.87-29.06 16.78-33.56s29.06 2.87 33.56 16.78l11.47 34.42 33.15-11.05c13.92-4.5 29.06 2.87 33.56 16.78s-2.87 29.06-16.78 33.56L329.7 194.6l22.1 65.9 33.15-11.05c13.92-4.5 29.06 2.87 33.56 16.78s-2.88 29.07-16.81 33.57z\"></path></svg></a>\r\n            </li>\r\n            <li class=\"nav-item\">\r\n              <a class=\"nav-link p-2\" href=\"https://opencollective.com/bootstrap/\" target=\"_blank\" rel=\"noopener\" aria-label=\"Open Collective\"><svg xmlns=\"http://www.w3.org/2000/svg\" fill=\"currentColor\" fill-rule=\"evenodd\" class=\"navbar-nav-svg\" viewBox=\"0 0 40 41\" role=\"img\" focusable=\"false\"><title>Open Collective</title><path fill-opacity=\".4\" d=\"M32.8 21c0 2.4-.8 4.9-2 6.9l5.1 5.1c2.5-3.4 4.1-7.6 4.1-12 0-4.6-1.6-8.8-4-12.2L30.7 14c1.2 2 2 4.3 2 7z\"></path><path d=\"M20 33.7a12.8 12.8 0 0 1 0-25.6c2.6 0 5 .7 7 2.1L32 5a20 20 0 1 0 .1 31.9l-5-5.2a13 13 0 0 1-7 2z\"></path></svg></a>\r\n            </li>\r\n          </ul>\r\n        <form class=\"form-inline my-2 my-lg-0\">\r\n          <input class=\"form-control mr-sm-2\" type=\"search\" placeholder=\"Search\" aria-label=\"Search\">\r\n          <button class=\"btn btn-outline-success my-2 my-sm-0\" type=\"submit\">Search</button>\r\n        </form>\r\n      </div>\r\n    </nav>\r\n  </header>"
+module.exports = "<!-- <header>\r\n    <nav class='navbar navbar-expand-lg navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3'>\r\n      <div class=\"container\">\r\n        <a class=\"navbar-brand\" [routerLink]='[\"/\"]'>kernys.Library.Web</a>\r\n        <button class=\"navbar-toggler\" type=\"button\" data-toggle=\"collapse\" data-target=\".navbar-collapse\" aria-label=\"Toggle navigation\"\r\n          [attr.aria-expanded]=\"isExpanded\" (click)=\"toggle()\">\r\n          <span class=\"navbar-toggler-icon\"></span>\r\n        </button>\r\n        <div class=\"navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse\" [ngClass]='{\"show\": isExpanded}'>\r\n          <ul class=\"navbar-nav flex-grow\">\r\n            <li class=\"nav-item\" [routerLinkActive]='[\"link-active\"]' [routerLinkActiveOptions]='{ exact: true }'>\r\n              <a class=\"nav-link text-dark\" [routerLink]='[\"/\"]'>Books</a>\r\n            </li>\r\n            <li class=\"nav-item\" [routerLinkActive]='[\"link-active\"]' [routerLinkActiveOptions]='{ exact: true }'>\r\n                <a class=\"nav-link text-dark\" [routerLink]='[\"/authors\"]'>Authors</a>\r\n              </li>\r\n          </ul>\r\n          <form class=\"form-inline my-2 my-lg-0\">\r\n              <input class=\"form-control mr-sm-2\" type=\"search\" placeholder=\"Search\" aria-label=\"Search\">\r\n              <button class=\"btn btn-outline-success my-2 my-sm-0\" type=\"submit\">Search</button>\r\n            </form>\r\n        </div>\r\n      \r\n      </div>\r\n   \r\n    </nav>\r\n  </header>\r\n   -->\r\n  <header>\r\n   <nav class=\"navbar navbar-expand-lg navbar-light bg-light\">\r\n      <a class=\"navbar-brand\" [routerLink]='[\"/\"]'>Kernys</a>\r\n      <button class=\"navbar-toggler\" type=\"button\" data-toggle=\"collapse\" data-target=\"#navbarSupportedContent\" aria-controls=\"navbarSupportedContent\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">\r\n        <span class=\"navbar-toggler-icon\"></span>\r\n      </button>\r\n    \r\n      <div class=\"collapse navbar-collapse\" id=\"navbarSupportedContent\">\r\n        <ul class=\"navbar-nav mr-auto\">\r\n          <li class=\"nav-item active\" [routerLinkActive]='[\"active\"]' [routerLinkActiveOptions]='{ exact: true }'>\r\n            <a class=\"nav-link\" [routerLink]='[\"/\"]'>Books <span class=\"sr-only\">(current)</span></a>\r\n          </li>\r\n          <li class=\"nav-item\" [routerLinkActive]='[\"active\"]' [routerLinkActiveOptions]='{ exact: true }'>\r\n            <a class=\"nav-link\" [routerLink]='[\"/authors\"]'>Authors</a>\r\n          </li>\r\n          <!-- <li class=\"nav-item dropdown\">\r\n            <a class=\"nav-link dropdown-toggle\" href=\"#\" id=\"navbarDropdown\" role=\"button\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">\r\n              Dropdown\r\n            </a>\r\n            <div class=\"dropdown-menu\" aria-labelledby=\"navbarDropdown\">\r\n              <a class=\"dropdown-item\" href=\"#\">Action</a>\r\n              <a class=\"dropdown-item\" href=\"#\">Another action</a>\r\n              <div class=\"dropdown-divider\"></div>\r\n              <a class=\"dropdown-item\" href=\"#\">Something else here</a>\r\n            </div>\r\n          </li>\r\n          <li class=\"nav-item\">\r\n            <a class=\"nav-link disabled\" href=\"#\">Disabled</a>\r\n          </li> -->\r\n        </ul>\r\n      \r\n        <ul class=\"navbar-nav flex-row ml-md-auto d-md-flex\">\r\n            <li class=\"nav-item dropdown\">\r\n                <a class=\"nav-item nav-link mr-md-2\" [routerLink]=\"['account/login']\"  *ngIf=\"!auth\" href=\"#\" id=\"bd-versions\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">\r\n                    Login \r\n                  </a>\r\n                   \r\n              <a class=\"nav-item nav-link dropdown-toggle mr-md-2\" *ngIf=\"auth\" href=\"#\" id=\"bd-versions\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">\r\n                Welcome {{auth.DisplayName}}\r\n              </a>\r\n              <div class=\"dropdown-menu dropdown-menu-right\" *ngIf=\"auth\" aria-labelledby=\"bd-versions\">\r\n                <a class=\"dropdown-item active\" [routerLink]='[\"/profile\"]'>Profile</a>\r\n                <div class=\"dropdown-divider\"></div>\r\n                <a class=\"dropdown-item\" href=\"https://v4-alpha.getbootstrap.com/\">v4 Alpha 6</a>\r\n                <div class=\"dropdown-divider\"></div>\r\n                <a class=\"dropdown-item\"  [routerLink]=\"['account/logout']\">Log Out</a>\r\n              </div>\r\n            </li>\r\n        \r\n            <li class=\"nav-item\">\r\n              <a class=\"nav-link p-2\" href=\"https://github.com/twbs/bootstrap\" target=\"_blank\" rel=\"noopener\" aria-label=\"GitHub\"><svg xmlns=\"http://www.w3.org/2000/svg\" class=\"navbar-nav-svg\" viewBox=\"0 0 512 499.36\" role=\"img\" focusable=\"false\"><title>GitHub</title><path fill=\"currentColor\" fill-rule=\"evenodd\" d=\"M256 0C114.64 0 0 114.61 0 256c0 113.09 73.34 209 175.08 242.9 12.8 2.35 17.47-5.56 17.47-12.34 0-6.08-.22-22.18-.35-43.54-71.2 15.49-86.2-34.34-86.2-34.34-11.64-29.57-28.42-37.45-28.42-37.45-23.27-15.84 1.73-15.55 1.73-15.55 25.69 1.81 39.21 26.38 39.21 26.38 22.84 39.12 59.92 27.82 74.5 21.27 2.33-16.54 8.94-27.82 16.25-34.22-56.84-6.43-116.6-28.43-116.6-126.49 0-27.95 10-50.8 26.35-68.69-2.63-6.48-11.42-32.5 2.51-67.75 0 0 21.49-6.88 70.4 26.24a242.65 242.65 0 0 1 128.18 0c48.87-33.13 70.33-26.24 70.33-26.24 14 35.25 5.18 61.27 2.55 67.75 16.41 17.9 26.31 40.75 26.31 68.69 0 98.35-59.85 120-116.88 126.32 9.19 7.9 17.38 23.53 17.38 47.41 0 34.22-.31 61.83-.31 70.23 0 6.85 4.61 14.81 17.6 12.31C438.72 464.97 512 369.08 512 256.02 512 114.62 397.37 0 256 0z\"></path></svg></a>\r\n            </li>\r\n            <li class=\"nav-item\">\r\n              <a class=\"nav-link p-2\" href=\"https://twitter.com/getbootstrap\" target=\"_blank\" rel=\"noopener\" aria-label=\"Twitter\"><svg xmlns=\"http://www.w3.org/2000/svg\" class=\"navbar-nav-svg\" viewBox=\"0 0 512 416.32\" role=\"img\" focusable=\"false\"><title>Twitter</title><path fill=\"currentColor\" d=\"M160.83 416.32c193.2 0 298.92-160.22 298.92-298.92 0-4.51 0-9-.2-13.52A214 214 0 0 0 512 49.38a212.93 212.93 0 0 1-60.44 16.6 105.7 105.7 0 0 0 46.3-58.19 209 209 0 0 1-66.79 25.37 105.09 105.09 0 0 0-181.73 71.91 116.12 116.12 0 0 0 2.66 24c-87.28-4.3-164.73-46.3-216.56-109.82A105.48 105.48 0 0 0 68 159.6a106.27 106.27 0 0 1-47.53-13.11v1.43a105.28 105.28 0 0 0 84.21 103.06 105.67 105.67 0 0 1-47.33 1.84 105.06 105.06 0 0 0 98.14 72.94A210.72 210.72 0 0 1 25 370.84a202.17 202.17 0 0 1-25-1.43 298.85 298.85 0 0 0 160.83 46.92\"></path></svg></a>\r\n            </li>\r\n            <li class=\"nav-item\">\r\n              <a class=\"nav-link p-2\" href=\"https://bootstrap-slack.herokuapp.com/\" target=\"_blank\" rel=\"noopener\" aria-label=\"Slack\"><svg xmlns=\"http://www.w3.org/2000/svg\" class=\"navbar-nav-svg\" viewBox=\"0 0 512 512\" role=\"img\" focusable=\"false\"><title>Slack</title><path fill=\"currentColor\" d=\"M210.787 234.832l68.31-22.883 22.1 65.977-68.309 22.882z\"></path><path fill=\"currentColor\" d=\"M490.54 185.6C437.7 9.59 361.6-31.34 185.6 21.46S-31.3 150.4 21.46 326.4 150.4 543.3 326.4 490.54 543.34 361.6 490.54 185.6zM401.7 299.8l-33.15 11.05 11.46 34.38c4.5 13.92-2.87 29.06-16.78 33.56-2.87.82-6.14 1.64-9 1.23a27.32 27.32 0 0 1-24.56-18l-11.46-34.38-68.36 22.92 11.46 34.38c4.5 13.92-2.87 29.06-16.78 33.56-2.87.82-6.14 1.64-9 1.23a27.32 27.32 0 0 1-24.56-18l-11.46-34.43-33.15 11.05c-2.87.82-6.14 1.64-9 1.23a27.32 27.32 0 0 1-24.56-18c-4.5-13.92 2.87-29.06 16.78-33.56l33.12-11.03-22.1-65.9-33.15 11.05c-2.87.82-6.14 1.64-9 1.23a27.32 27.32 0 0 1-24.56-18c-4.48-13.93 2.89-29.07 16.81-33.58l33.15-11.05-11.46-34.38c-4.5-13.92 2.87-29.06 16.78-33.56s29.06 2.87 33.56 16.78l11.46 34.38 68.36-22.92-11.46-34.38c-4.5-13.92 2.87-29.06 16.78-33.56s29.06 2.87 33.56 16.78l11.47 34.42 33.15-11.05c13.92-4.5 29.06 2.87 33.56 16.78s-2.87 29.06-16.78 33.56L329.7 194.6l22.1 65.9 33.15-11.05c13.92-4.5 29.06 2.87 33.56 16.78s-2.88 29.07-16.81 33.57z\"></path></svg></a>\r\n            </li>\r\n            <li class=\"nav-item\">\r\n              <a class=\"nav-link p-2\" href=\"https://opencollective.com/bootstrap/\" target=\"_blank\" rel=\"noopener\" aria-label=\"Open Collective\"><svg xmlns=\"http://www.w3.org/2000/svg\" fill=\"currentColor\" fill-rule=\"evenodd\" class=\"navbar-nav-svg\" viewBox=\"0 0 40 41\" role=\"img\" focusable=\"false\"><title>Open Collective</title><path fill-opacity=\".4\" d=\"M32.8 21c0 2.4-.8 4.9-2 6.9l5.1 5.1c2.5-3.4 4.1-7.6 4.1-12 0-4.6-1.6-8.8-4-12.2L30.7 14c1.2 2 2 4.3 2 7z\"></path><path d=\"M20 33.7a12.8 12.8 0 0 1 0-25.6c2.6 0 5 .7 7 2.1L32 5a20 20 0 1 0 .1 31.9l-5-5.2a13 13 0 0 1-7 2z\"></path></svg></a>\r\n            </li>\r\n          </ul>\r\n        <form class=\"form-inline my-2 my-lg-0\">\r\n          <input class=\"form-control mr-sm-2\" type=\"search\" placeholder=\"Search\" aria-label=\"Search\">\r\n          <button class=\"btn btn-outline-success my-2 my-sm-0\" type=\"submit\">Search</button>\r\n        </form>\r\n      </div>\r\n    </nav>\r\n  </header>"
 
 /***/ }),
 
@@ -631,14 +1095,12 @@ var LibraryAppComponent = /** @class */ (function () {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "LibraryRoutes", function() { return LibraryRoutes; });
-/* harmony import */ var _book_list_book_list_component__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./book/list/book-list.component */ "./src/app/book/list/book-list.component.ts");
-/* harmony import */ var _error_404__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./error/404 */ "./src/app/error/404.ts");
-/* harmony import */ var _security_login_login_component__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./security/login/login.component */ "./src/app/security/login/login.component.ts");
-/* harmony import */ var _security_login_logout_component__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./security/login/logout.component */ "./src/app/security/login/logout.component.ts");
-/* harmony import */ var _security_sign_up_sign_up_component__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./security/sign-up/sign-up.component */ "./src/app/security/sign-up/sign-up.component.ts");
-/* harmony import */ var _profile_profile_component__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./profile/profile.component */ "./src/app/profile/profile.component.ts");
-/* harmony import */ var _book_list_book_list_guard__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./book/list/book-list.guard */ "./src/app/book/list/book-list.guard.ts");
-
+/* harmony import */ var _error_404__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./error/404 */ "./src/app/error/404.ts");
+/* harmony import */ var _security_login_login_component__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./security/login/login.component */ "./src/app/security/login/login.component.ts");
+/* harmony import */ var _security_login_logout_component__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./security/login/logout.component */ "./src/app/security/login/logout.component.ts");
+/* harmony import */ var _security_sign_up_sign_up_component__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./security/sign-up/sign-up.component */ "./src/app/security/sign-up/sign-up.component.ts");
+/* harmony import */ var _profile_profile_component__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./profile/profile.component */ "./src/app/profile/profile.component.ts");
+/* harmony import */ var _profile_profile_guard__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./profile/profile.guard */ "./src/app/profile/profile.guard.ts");
 
 
 
@@ -646,16 +1108,18 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var LibraryRoutes = [
-    { path: '', component: _book_list_book_list_component__WEBPACK_IMPORTED_MODULE_0__["BookListComponent"], pathMatch: 'full', canActivate: [_book_list_book_list_guard__WEBPACK_IMPORTED_MODULE_6__["BookListGuard"]], data: { breadcrumb: 'Books' } },
-    { path: 'books', component: _book_list_book_list_component__WEBPACK_IMPORTED_MODULE_0__["BookListComponent"], canActivate: [_book_list_book_list_guard__WEBPACK_IMPORTED_MODULE_6__["BookListGuard"]], data: { breadcrumb: 'Books' } },
+    { path: 'profile', component: _profile_profile_component__WEBPACK_IMPORTED_MODULE_4__["ProfileComponent"], canActivate: [_profile_profile_guard__WEBPACK_IMPORTED_MODULE_5__["ProfileGuard"]] },
     { path: 'book', loadChildren: './book/book.module#BookModule', data: { breadcrumb: 'Book' } },
-    { path: 'authors', loadChildren: './author/author.module#AuthorModule', data: { breadcrumb: 'Authors' } },
+    { path: 'books', loadChildren: './book/book.module#BookModule', data: { breadcrumb: 'Book' } },
     { path: 'author', loadChildren: './author/author.module#AuthorModule', data: { breadcrumb: 'Author' } },
-    { path: 'profile', component: _profile_profile_component__WEBPACK_IMPORTED_MODULE_5__["ProfileComponent"] },
-    { path: '404', component: _error_404__WEBPACK_IMPORTED_MODULE_1__["NotFoundComponent"] },
-    { path: 'account/logout', component: _security_login_logout_component__WEBPACK_IMPORTED_MODULE_3__["LogoutComponent"] },
-    { path: 'account/login', component: _security_login_login_component__WEBPACK_IMPORTED_MODULE_2__["LoginComponent"], data: { breadcrumb: 'Login' } },
-    { path: 'account/signup', component: _security_sign_up_sign_up_component__WEBPACK_IMPORTED_MODULE_4__["SignUpComponent"], data: { breadcrumb: 'Sign up' } },
+    { path: 'authors', loadChildren: './author/author.module#AuthorModule', data: { breadcrumb: 'Authors' } },
+    { path: '404', component: _error_404__WEBPACK_IMPORTED_MODULE_0__["NotFoundComponent"] },
+    { path: 'account/logout', component: _security_login_logout_component__WEBPACK_IMPORTED_MODULE_2__["LogoutComponent"] },
+    { path: 'account/login', component: _security_login_login_component__WEBPACK_IMPORTED_MODULE_1__["LoginComponent"], data: { breadcrumb: 'Login' } },
+    { path: 'account/signup', component: _security_sign_up_sign_up_component__WEBPACK_IMPORTED_MODULE_3__["SignUpComponent"], data: { breadcrumb: 'Sign up' } },
+    //{ path:'', loadChildren: './book/book.module#BookModule',  pathMatch:'full', data: {breadcrumb: 'Book' } },
+    { path: '', redirectTo: 'books', pathMatch: 'full' },
+    { path: '**', redirectTo: '404', pathMatch: 'full' }
 ];
 
 
@@ -668,7 +1132,7 @@ var LibraryRoutes = [
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<h1>My profile</h1>"
+module.exports = "<h1>My profile</h1>\r\n\r\n<user-book-list [isProfile]=\"isProfile\"></user-book-list>"
 
 /***/ }),
 
@@ -688,6 +1152,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ProfileComponent = /** @class */ (function () {
     function ProfileComponent() {
+        this.isProfile = true;
     }
     ProfileComponent.prototype.ngOnInit = function () {
     };
@@ -698,6 +1163,50 @@ var ProfileComponent = /** @class */ (function () {
         tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [])
     ], ProfileComponent);
     return ProfileComponent;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/profile/profile.guard.ts":
+/*!******************************************!*\
+  !*** ./src/app/profile/profile.guard.ts ***!
+  \******************************************/
+/*! exports provided: ProfileGuard */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ProfileGuard", function() { return ProfileGuard; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "../node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "../node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/router */ "../node_modules/@angular/router/fesm5/router.js");
+/* harmony import */ var _security_security_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../security/security.service */ "./src/app/security/security.service.ts");
+
+
+
+
+var ProfileGuard = /** @class */ (function () {
+    function ProfileGuard(router, securityService) {
+        this.router = router;
+        this.securityService = securityService;
+    }
+    ProfileGuard.prototype.canActivate = function (next, state) {
+        var isAuthorized = this.securityService.getAuth() ? true : false;
+        if (!isAuthorized) {
+            this.router.navigate(['account/login']);
+        }
+        return true;
+    };
+    ;
+    ProfileGuard = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])({
+            providedIn: 'root'
+        }),
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"], _security_security_service__WEBPACK_IMPORTED_MODULE_3__["SecurityService"]])
+    ], ProfileGuard);
+    return ProfileGuard;
 }());
 
 

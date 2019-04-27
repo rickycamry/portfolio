@@ -6,6 +6,8 @@ import { Component, OnInit } from '@angular/core';
 
 export class ProfileComponent implements OnInit{
 
+isProfile:boolean=true;
+
  constructor(){
      
  }

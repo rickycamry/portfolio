@@ -6,8 +6,12 @@ import { AuthorGuard } from './author.guard';
 
 export const authorRoutes:Routes=[
     
-    { path: '', component: AuthorListComponent, canActivate:[AuthorGuard], data:{breadcrumb: '' } },
-    { path: ':id', component: AuthorDetailsComponent ,canActivate:[AuthorGuard], data:{breadcrumb: 'Details' }},
+    { path: '',  component: AuthorListComponent, data:{breadcrumb: '' } },
+   // { path: 'authors',  component: AuthorListComponent, canActivate:[AuthorGuard], data:{breadcrumb: '' } },
+
+    { path: ':id', component: AuthorDetailsComponent, data:{breadcrumb: 'Details' }},
+
+    
    
     // { path: '', component: AuthorListComponent, pathMatch: 'full' },
 ]

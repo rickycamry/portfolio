@@ -90,50 +90,6 @@ var AuthorListComponent = /** @class */ (function () {
 
 /***/ }),
 
-/***/ "./src/app/author/author.guard.ts":
-/*!****************************************!*\
-  !*** ./src/app/author/author.guard.ts ***!
-  \****************************************/
-/*! exports provided: AuthorGuard */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "AuthorGuard", function() { return AuthorGuard; });
-/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "../node_modules/tslib/tslib.es6.js");
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "../node_modules/@angular/core/fesm5/core.js");
-/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/router */ "../node_modules/@angular/router/fesm5/router.js");
-/* harmony import */ var _security_security_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../security/security.service */ "./src/app/security/security.service.ts");
-
-
-
-
-var AuthorGuard = /** @class */ (function () {
-    function AuthorGuard(router, securityService) {
-        this.router = router;
-        this.securityService = securityService;
-    }
-    AuthorGuard.prototype.canActivate = function (next, state) {
-        var isAuthorized = this.securityService.getAuth() ? true : false;
-        if (!isAuthorized) {
-            this.router.navigate(['account/login']);
-        }
-        return true;
-    };
-    ;
-    AuthorGuard = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
-        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])({
-            providedIn: 'root'
-        }),
-        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"], _security_security_service__WEBPACK_IMPORTED_MODULE_3__["SecurityService"]])
-    ], AuthorGuard);
-    return AuthorGuard;
-}());
-
-
-
-/***/ }),
-
 /***/ "./src/app/author/author.module.ts":
 /*!*****************************************!*\
   !*** ./src/app/author/author.module.ts ***!
@@ -199,13 +155,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "authorRoutes", function() { return authorRoutes; });
 /* harmony import */ var _author_list_component__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./author-list.component */ "./src/app/author/author-list.component.ts");
 /* harmony import */ var _author_details_component__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./author-details.component */ "./src/app/author/author-details.component.ts");
-/* harmony import */ var _author_guard__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./author.guard */ "./src/app/author/author.guard.ts");
-
 
 
 var authorRoutes = [
-    { path: '', component: _author_list_component__WEBPACK_IMPORTED_MODULE_0__["AuthorListComponent"], canActivate: [_author_guard__WEBPACK_IMPORTED_MODULE_2__["AuthorGuard"]], data: { breadcrumb: '' } },
-    { path: ':id', component: _author_details_component__WEBPACK_IMPORTED_MODULE_1__["AuthorDetailsComponent"], canActivate: [_author_guard__WEBPACK_IMPORTED_MODULE_2__["AuthorGuard"]], data: { breadcrumb: 'Details' } },
+    { path: '', component: _author_list_component__WEBPACK_IMPORTED_MODULE_0__["AuthorListComponent"], data: { breadcrumb: '' } },
+    // { path: 'authors',  component: AuthorListComponent, canActivate:[AuthorGuard], data:{breadcrumb: '' } },
+    { path: ':id', component: _author_details_component__WEBPACK_IMPORTED_MODULE_1__["AuthorDetailsComponent"], data: { breadcrumb: 'Details' } },
 ];
 
 

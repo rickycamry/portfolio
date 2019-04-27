@@ -1,7 +1,12 @@
+using System;
+using kernys.Library.Core.Models;
 using kernys.Library.Web.ViewModel;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
+using System.Threading.Tasks;
+using System.Security.Claims;
 
 namespace kernys.Library.Web.Controllers
 {
@@ -10,9 +15,11 @@ namespace kernys.Library.Web.Controllers
     public class BaseController : Controller
     {
         protected readonly JsonSerializerSettings JsonFormat = new JsonSerializerSettings { Formatting = Formatting.Indented };
-        public BaseController()
-        {
+        public UserManager<LibraryUser> _userManager { get; private set; }
 
+        public BaseController(UserManager<LibraryUser> userManager)
+        {
+           this._userManager=userManager;
         }
 
 
@@ -32,9 +39,21 @@ namespace kernys.Library.Web.Controllers
 
             return Json(obj, this.JsonFormat);
         }
+          
+          protected async Task<LibraryUser> GetCurrentUser(){
+             
 
 
+            return  await this._userManager.FindByNameAsync(this.User.Identity.Name);
+ 
+          }
 
+          protected string GetCurrentUserId(){
+
+              return User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+          }
+
+         
     }
 
 }

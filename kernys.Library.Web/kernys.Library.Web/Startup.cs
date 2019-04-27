@@ -83,7 +83,7 @@ namespace kernys.Library.Web
                 var dbContext = new LibraryDbContext(optionsBuilder.Options); 
 
                 //Ensure to delete database
-                // dbContext.Database.EnsureDeleted();
+              //  dbContext.Database.EnsureDeleted();
                 //Create the DB if it doesn't exist and applies peding migrations.
                 dbContext.Database.EnsureCreated();
 
