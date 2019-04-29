@@ -1,6 +1,6 @@
 # Portfolio
 
-In this example web app we can mock a library app where users can register in the site and then they can add, edit and see others user books.
+This is an example of a web app that mock a library app where users can registered in the site and then they can add, edit and see others user books.
 
 Technologies used in this app.
 
