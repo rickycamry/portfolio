@@ -2,6 +2,8 @@
 
 This is an example of a web app that mock a library app where users can registered in the site and then they can add, edit and see others user books.
 
+Here you can test the site: http://kernyslibrarywebultimate.azurewebsites.net
+
 Technologies used in this app.
 
 - **Security**: JWT (JSON Web Tokens) authentication and Identity Authorization/Authentication 
