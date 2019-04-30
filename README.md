@@ -9,6 +9,7 @@ Technologies used in this app.
 - **Security**: JWT (JSON Web Tokens) authentication and Identity Authorization/Authentication 
 - **Back-End**: ASP.NET Mvc core 2.2, Rest API, Entity Framework (Code-First)
 - **Front-End**: Angular, TypeScript, Jquery, Toastr, Bootstrap and Css.
+- **Hosted**: on Windows azure.
 
 **Angular**
 - Custom pipes
