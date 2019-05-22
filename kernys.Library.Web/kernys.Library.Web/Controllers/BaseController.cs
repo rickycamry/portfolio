@@ -49,6 +49,7 @@ namespace kernys.Library.Web.Controllers
           }
 
           protected string GetCurrentUserId(){
+              
 
               return User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
           }

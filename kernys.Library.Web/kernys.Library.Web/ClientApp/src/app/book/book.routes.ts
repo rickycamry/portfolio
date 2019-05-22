@@ -2,7 +2,6 @@ import { Routes } from '@angular/router';
 
 import { BookDetailComponent } from './detail/book-detail.component';
 import { BookDetailGuard } from './detail/book-detail.guard';
-import { BookCreateComponent } from './create/book-create.component';
 import { BookEditComponent } from './edit/book-edit.component';
 import { BookListComponent } from './list/book-list.component';
 import { BookListGuard } from './list/book-list.guard';

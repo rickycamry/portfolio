@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
 using kernys.Library.Core.Models;
@@ -18,33 +19,40 @@ namespace Kernys.Library.Repository.Repositories
 
         private readonly LibraryDbContext _context;
 
-    
+        private string currentLibraryUserId;
 
-        public BookRepository(LibraryDbContext context)
+        public BookRepository(LibraryDbContext context, string _currentLibraryUserId)
         {
-            _context = context; 
+            _context = context;
+            currentLibraryUserId = _currentLibraryUserId;
+
         }
 
-        public  Book AddBook(Book book, string libraryUserId)
+
+        public IList<Book> GetBooks()
         {
 
 
-            book.LibraryUserId= libraryUserId;
+            return _context.Books.ToList();
+
+
+
+        }
+
+        public IList<Book> GetUserBooks()
+        {
+            return _context.Books.Where(x => x.LibraryUserId == this.currentLibraryUserId).ToList();
+        }
+
+        public Book AddBook(Book book)
+        {
+
+
+            book.LibraryUserId = this.currentLibraryUserId;
             _context.Books.Add(book);
             _context.SaveChanges();
 
             return book;
-
-
-        }
-
-        public void DeleteBook(int id,string libraryUserId)
-        {
-
-
-            var currentBook = _context.Books.Where(x => x.Id == id && x.LibraryUserId==libraryUserId).FirstOrDefault();
-            _context.Books.Remove(currentBook);
-            _context.SaveChanges();
 
 
         }
@@ -60,37 +68,43 @@ namespace Kernys.Library.Repository.Repositories
 
         }
 
-        public IList<Book> GetBooks()
-        {
-
-
-            return _context.Books.ToList();
-
-
-
-        }
-
-        public Book GetUserBook(int bookId, string libraryUserId)
+        public Book GetUserBook(int bookId)
         {
             return _context.Books
                            .Include(x => x.AuthorBooks).ThenInclude(x => x.Author)
                            .Include(x => x.Publisher)
                            .Where(x => x.Id == bookId &&
-                                       x.LibraryUserId==libraryUserId).FirstOrDefault();
-        }
-
-        public IList<Book> GetUserBooks(string libraryUserId)
-        {
-            return _context.Books.Where(x=>x.LibraryUserId==libraryUserId).ToList();
+                                       x.LibraryUserId == this.currentLibraryUserId).FirstOrDefault();
         }
 
         public Book UpdateBook(Book book)
         {
-            
+            book.LibraryUserId = this.currentLibraryUserId;
+
             _context.Books.Update(book);
             _context.SaveChanges();
 
             return book;
+
+
+        }
+
+        public void RemoveAuthorFromBook(int bookId, int authorId)
+        {
+
+            var authorBook = this._context.AuthorBooks
+                                          .Where(x => x.AuthorId == authorId && x.BookId == bookId && x.Book.LibraryUserId == this.currentLibraryUserId).First();
+            this._context.AuthorBooks.Remove(authorBook);
+            this._context.SaveChanges();
+
+        }
+
+        public void DeleteBook(Book book)
+        {
+
+
+            _context.Books.Remove(book);
+            _context.SaveChanges();
 
 
         }

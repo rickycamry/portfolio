@@ -10,6 +10,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 
 namespace kernys.Library.Web.Controllers
 {
@@ -19,8 +20,8 @@ namespace kernys.Library.Web.Controllers
 
 
         private IAuthorService _service;
-        public AuthorController(IAuthorService service,UserManager<LibraryUser> userManager)
-        :base(userManager)
+        public AuthorController(IAuthorService service, UserManager<LibraryUser> userManager)
+        : base(userManager)
         {
             this._service = service;
         }
@@ -42,7 +43,8 @@ namespace kernys.Library.Web.Controllers
             catch (Exception e)
             {
 
-                return new StatusCodeResult(400);
+                return new StatusCodeResult(StatusCodes.Status400BadRequest);
+
             }
         }
 
@@ -64,44 +66,71 @@ namespace kernys.Library.Web.Controllers
             catch (Exception e)
             {
 
-                return new StatusCodeResult(400);
+                return new StatusCodeResult(StatusCodes.Status400BadRequest);
+
             }
         }
 
         [HttpPost()]
-        public IActionResult Post([FromBody]Author model)
+        public IActionResult Post([FromBody]AuthorViewModel model)
         {
-
-            var vm = this._service.AddAuthor(model);
-
-            return Json(vm, new Newtonsoft.Json.JsonSerializerSettings
+            try
             {
-                Formatting = Formatting.Indented
-            });
+                var vm = this._service.AddAuthor(model.Adapt<Author>()).Adapt<AuthorViewModel>();
 
+                return Json(vm, new Newtonsoft.Json.JsonSerializerSettings
+                {
+                    Formatting = Formatting.Indented
+                });
+
+            }
+            catch (Exception e)
+            {
+
+                return new StatusCodeResult(StatusCodes.Status400BadRequest);
+            }
         }
 
         [HttpPut()]
-        public IActionResult Put([FromBody]Author model)
+        public IActionResult Put([FromBody]AuthorViewModel model)
         {
-
-            //TO DO:
-            var vm = this._service.UpdateAuthor(model).Adapt<AuthorViewModel>();
-
-            return Json(vm, new Newtonsoft.Json.JsonSerializerSettings
+            try
             {
-                Formatting = Formatting.Indented
-            });
 
+                //TO DO:
+                var vm = this._service.UpdateAuthor(model.Adapt<Author>()).Adapt<AuthorViewModel>();
+
+                return Json(vm, new Newtonsoft.Json.JsonSerializerSettings
+                {
+                    Formatting = Formatting.Indented
+                });
+
+            }
+            catch (Exception e)
+            {
+                
+               return new StatusCodeResult(StatusCodes.Status400BadRequest);
+            }
         }
 
-        [HttpDelete()]
+        [HttpDelete("{id}")]
         public IActionResult Delete(int id)
         {
+            try
+            {
+                var author = this._service.GetAuthorById(id);
 
-            this._service.DeleteAuthor(id);
+                this._service.DeleteAuthor(author);
 
-            return Ok();
+                return Ok();
+
+            }
+            catch (Exception e)
+            {
+
+             
+               return new StatusCodeResult(StatusCodes.Status400BadRequest);
+            }
         }
 
 

@@ -4,12 +4,14 @@
  <div class="card mb-12" style="max-width: 940px;">
      <div class="row no-gutters">
        <div class="col-md-4">
-         <img [src]="book.PhotoUrl" class="card-img" alt="...">
+         <img [src]="book.PhotoUrl" *ngIf="book.PhotoUrl" class="card-img" alt="...">
+         <img src="https://www.on-queue.com/productImages/No_Image.jpg" *ngIf="!book.PhotoUrl" class="card-img" alt="...">
+
        </div>
        <div class="col-md-8">
          <div class="card-body">
            <p class="card-text">Language: {{book.Language}}</p>
-           <p class="card-text">Author:</p>
+           <p class="card-text">Authors:</p>
            <ul>
              <li *ngFor="let a of book?.Authors">
                <a [routerLink]="['/author/', a.Id]">{{a.FirstName}} {{a.LastName}}</a>

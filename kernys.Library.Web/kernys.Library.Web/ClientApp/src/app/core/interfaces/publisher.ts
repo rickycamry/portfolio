@@ -3,4 +3,5 @@ export interface Publisher{
     Name:string;
     City:string;
     Country:string;
+    BookId?:number;
 }

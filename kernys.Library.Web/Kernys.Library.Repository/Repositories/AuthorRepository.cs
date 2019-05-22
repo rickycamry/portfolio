@@ -13,70 +13,106 @@ namespace Kernys.Library.Repository.Repositories
     {
 
         private readonly LibraryDbContext context;
-        public AuthorRepository(LibraryDbContext _context)
+        private readonly string currentLibraryUserId;
+
+        public AuthorRepository(LibraryDbContext _context, string _currentLibraryUserId)
         {
             context = _context;
+            currentLibraryUserId = _currentLibraryUserId;
         }
 
         public IList<Author> GetAuthors()
         {
-           
-                return context.Authors.ToList();
 
-           
+            return context.Authors.OrderByDescending(x=>x.Id).ToList();
+
+
 
         }
+
+        public IList<Author> GetAuthorByBookId(int bookId)
+        {
+            throw new NotImplementedException();
+        }
+
         public Author GetAuthorById(int id)
         {
 
-           
-                return context.Authors
-                     .Include(x => x.AuthorBooks).ThenInclude(x => x.Book)
-                     .Where(x => x.Id == id).FirstOrDefault();
-            
+
+            return context.Authors
+                 .Include(x => x.AuthorBooks).ThenInclude(x => x.Book)
+                 .Where(x => x.Id == id).FirstOrDefault();
+
 
         }
-
 
         public Author AddAuthor(Author author)
         {
-            
-                context.Authors.Add(author);
-                context.SaveChanges();
 
-                return author;
-             
-        }
+            context.Authors.Add(author);
+            context.SaveChanges();
 
-        public void DeleteAuthor(int id)
-        {
-          
-
-                var currentAuthor = context.Authors.Where(x => x.Id == id).FirstOrDefault();
-
-                context.Authors.Remove(currentAuthor);
-                context.SaveChanges();
-
-            
+            return author;
 
         }
-
-
 
         public Author UpdateAuthor(Author author)
         {
-            
-                var currentAuthor = context.Authors.Find(author.Id);
-                currentAuthor.FirstName = author.FirstName;
-                currentAuthor.LastName = author.LastName;
-                currentAuthor.Biography = author.Biography;
 
-                context.Authors.Update(author);
-                context.SaveChanges();
+            context.Authors.Update(author);
+            context.SaveChanges();
 
-                return currentAuthor;
-            
+            return author;
+
 
         }
+      
+        public Author AddAuthorToBook(int bookId, Author author)
+        {
+
+             
+            var book = this.context.Books.Where(x => x.Id == bookId && x.LibraryUserId == this.currentLibraryUserId).First();
+
+            if (author.Id > 0)
+            {
+                this.context.Authors.Update(author);
+                this.context.SaveChanges();
+
+
+            }
+            else
+            {
+                this.context.Authors.Add(author);
+                this.context.SaveChanges();
+            }
+
+            if(!this.context.AuthorBooks.Any(x=>x.BookId==book.Id && x.AuthorId == author.Id)){
+                this.context.AuthorBooks.Add(new AuthorBook()
+                {
+                    Author = author,
+                    Book = book
+                });
+                this.context.SaveChanges();
+
+            }
+           
+
+
+
+            return author;
+        }
+
+        public void DeleteAuthor(Author author)
+        {
+
+
+
+            context.Authors.Remove(author);
+            context.SaveChanges();
+
+
+
+        }
+
     }
 }

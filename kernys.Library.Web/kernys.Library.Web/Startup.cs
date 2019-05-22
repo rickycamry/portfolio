@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
 using kernys.Library.Core.Models;
@@ -48,52 +49,74 @@ namespace kernys.Library.Web
                 opt.User.AllowedUserNameCharacters = null;
                 opt.User.RequireUniqueEmail = true;
 
-                 
+
             })
                     .AddEntityFrameworkStores<LibraryDbContext>();
 
-            services.AddAuthentication(opt=>{
-                 opt.DefaultScheme=JwtBearerDefaults.AuthenticationScheme;
-                 opt.DefaultAuthenticateScheme=JwtBearerDefaults.AuthenticationScheme;
-                 opt.DefaultChallengeScheme=JwtBearerDefaults.AuthenticationScheme;
-            }).AddJwtBearer(cfg=>{
-               cfg.RequireHttpsMetadata=false;
-               cfg.SaveToken=true;
-               cfg.TokenValidationParameters=new Microsoft.IdentityModel.Tokens.TokenValidationParameters(){
+            services.AddAuthentication(opt =>
+            {
+                opt.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
+                opt.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                opt.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+            }).AddJwtBearer(cfg =>
+            {
+                cfg.RequireHttpsMetadata = false;
+                cfg.SaveToken = true;
+                cfg.TokenValidationParameters = new Microsoft.IdentityModel.Tokens.TokenValidationParameters()
+                {
 
-                //standar config 
-                ValidIssuer=Configuration["Auth:Jwt:Issuer"],
-                ValidAudience=Configuration["Auth:Jwt:Audience"],
-                IssuerSigningKey=new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration["Auth:Jwt:Key"])),
-                ClockSkew=TimeSpan.Zero,
+                    //standar config 
+                    ValidIssuer = Configuration["Auth:Jwt:Issuer"],
+                    ValidAudience = Configuration["Auth:Jwt:Audience"],
+                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration["Auth:Jwt:Key"])),
+                    ClockSkew = TimeSpan.Zero,
 
-                //Security Swtiches
-                RequireExpirationTime=true,
-                ValidateIssuer=true,
-                ValidateIssuerSigningKey=true,
-                ValidateAudience=true
-               };
+                    //Security Swtiches
+                    RequireExpirationTime = true,
+                    ValidateIssuer = true,
+                    ValidateIssuerSigningKey = true,
+                    ValidateAudience = true
+                };
 
             });
 
 
-                var optionsBuilder = new DbContextOptionsBuilder<LibraryDbContext>()
-                                         .UseSqlServer(Configuration.GetConnectionString("MyConnectionString"));
+            var optionsBuilder = new DbContextOptionsBuilder<LibraryDbContext>()
+                                     .UseSqlServer(Configuration.GetConnectionString("MyConnectionString"));
 
-                var dbContext = new LibraryDbContext(optionsBuilder.Options); 
 
-                //Ensure to delete database
-              //  dbContext.Database.EnsureDeleted();
-                //Create the DB if it doesn't exist and applies peding migrations.
-                dbContext.Database.EnsureCreated();
+            var dbContext = services.BuildServiceProvider().GetService<LibraryDbContext>();
+            //new LibraryDbContext(optionsBuilder.Options); 
 
-                 //Feed the db with my example data
-                 Repository.Data.DbInitializer.Seed(dbContext);
+            //Ensure to delete database
+            // dbContext.Database.EnsureDeleted();
+            //Create the DB if it doesn't exist and applies peding migrations.
+            dbContext.Database.EnsureCreated();
+
+            //Feed the db with my example data
+            Repository.Data.DbInitializer.Seed(dbContext);
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
-            //DI
-            services.AddTransient<Kernys.Library.Service.Interfaces.IAuthorService, Kernys.Library.Repository.Repositories.AuthorRepository>();
-            services.AddTransient<Kernys.Library.Service.Interfaces.IBookService, Kernys.Library.Repository.Repositories.BookRepository>();
+
+
+
+            services.AddTransient<Kernys.Library.Service.Interfaces.IAuthorService>(ServiceProvider =>
+            {
+                var user = ServiceProvider.GetService<IHttpContextAccessor>().HttpContext.User;
+                return new Kernys.Library.Repository.Repositories.AuthorRepository(ServiceProvider.GetService<LibraryDbContext>(), user.FindFirst(ClaimTypes.NameIdentifier)?.Value);
+            }
+
+);
+            services.AddTransient<Kernys.Library.Service.Interfaces.IBookService, Kernys.Library.Repository.Repositories.BookRepository>(ServiceProvider =>
+            {
+                var user = ServiceProvider.GetService<IHttpContextAccessor>().HttpContext.User;
+                return new Kernys.Library.Repository.Repositories.BookRepository(ServiceProvider.GetService<LibraryDbContext>(), user.FindFirst(ClaimTypes.NameIdentifier)?.Value);
+            });
+            services.AddTransient<Kernys.Library.Service.Interfaces.IPublisherService, Kernys.Library.Repository.Repositories.PublisherRepository>(ServiceProvider =>
+            {
+                var user = ServiceProvider.GetService<IHttpContextAccessor>().HttpContext.User;
+                return new Kernys.Library.Repository.Repositories.PublisherRepository(ServiceProvider.GetService<LibraryDbContext>(), user.FindFirst(ClaimTypes.NameIdentifier)?.Value);
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

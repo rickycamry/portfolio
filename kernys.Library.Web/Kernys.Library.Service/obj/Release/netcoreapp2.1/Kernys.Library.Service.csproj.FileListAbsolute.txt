@@ -1,0 +1,12 @@
+C:\dev\Kernys.Library\kernys.Library.Web\Kernys.Library.Service\bin\Release\netcoreapp2.1\Kernys.Library.Service.deps.json
+C:\dev\Kernys.Library\kernys.Library.Web\Kernys.Library.Service\bin\Release\netcoreapp2.1\Kernys.Library.Service.dll
+C:\dev\Kernys.Library\kernys.Library.Web\Kernys.Library.Service\bin\Release\netcoreapp2.1\Kernys.Library.Service.pdb
+C:\dev\Kernys.Library\kernys.Library.Web\Kernys.Library.Service\bin\Release\netcoreapp2.1\Kernys.Library.Core.dll
+C:\dev\Kernys.Library\kernys.Library.Web\Kernys.Library.Service\bin\Release\netcoreapp2.1\Kernys.Library.Core.pdb
+C:\dev\Kernys.Library\kernys.Library.Web\Kernys.Library.Service\obj\Release\netcoreapp2.1\Kernys.Library.Service.csprojAssemblyReference.cache
+C:\dev\Kernys.Library\kernys.Library.Web\Kernys.Library.Service\obj\Release\netcoreapp2.1\Kernys.Library.Service.csproj.CoreCompileInputs.cache
+C:\dev\Kernys.Library\kernys.Library.Web\Kernys.Library.Service\obj\Release\netcoreapp2.1\Kernys.Library.Service.AssemblyInfoInputs.cache
+C:\dev\Kernys.Library\kernys.Library.Web\Kernys.Library.Service\obj\Release\netcoreapp2.1\Kernys.Library.Service.AssemblyInfo.cs
+C:\dev\Kernys.Library\kernys.Library.Web\Kernys.Library.Service\obj\Release\netcoreapp2.1\Kernys.Library.Service.csproj.CopyComplete
+C:\dev\Kernys.Library\kernys.Library.Web\Kernys.Library.Service\obj\Release\netcoreapp2.1\Kernys.Library.Service.dll
+C:\dev\Kernys.Library\kernys.Library.Web\Kernys.Library.Service\obj\Release\netcoreapp2.1\Kernys.Library.Service.pdb

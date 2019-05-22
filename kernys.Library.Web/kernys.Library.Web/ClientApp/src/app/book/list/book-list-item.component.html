@@ -1,4 +1,6 @@
-    <img src="{{book.PhotoUrl}}" width="80%" height="300px" [routerLink]="['/book/',book.Id]">
+    <img src="{{book.PhotoUrl}}" *ngIf="book.PhotoUrl" width="80%" height="300px" [routerLink]="['/book/',book.Id]">
+    <img src="https://www.on-queue.com/productImages/No_Image.jpg" *ngIf="!book.PhotoUrl" width="80%" height="300px" [routerLink]="['/book/',book.Id]">
+
     <div class="card-body">
       <h5 class="card-title">{{book.Title}}</h5>
       <p class="card-text">{{book.Description | reduceParagraph:200}}</p>

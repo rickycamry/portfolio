@@ -14,7 +14,7 @@ var AuthorDetailsComponent = /** @class */ (function () {
     };
     AuthorDetailsComponent = tslib_1.__decorate([
         Component({
-            templateUrl: 'author.details.component.html'
+            templateUrl: 'author-details.component.html'
         }),
         tslib_1.__metadata("design:paramtypes", [AuthorService,
             ActivatedRoute])

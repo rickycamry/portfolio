@@ -14,6 +14,7 @@ C:\dev\kernys.Library.Web\kernys.Library.Web\obj\Debug\netcoreapp2.2\kernys.Libr
 C:\dev\kernys.Library.Web\kernys.Library.Web\obj\Debug\netcoreapp2.2\kernys.Library.Web.dll
 C:\dev\kernys.Library.Web\kernys.Library.Web\obj\Debug\netcoreapp2.2\kernys.Library.Web.pdb
 C:\dev\kernys.Library.Web\kernys.Library.Web\obj\Debug\netcoreapp2.2\kernys.Library.Web.csproj.CopyComplete
+C:\dev\Kernys.Library\kernys.Library.Web\kernys.Library.Web\obj\Debug\netcoreapp2.2\kernys.Library.Web.csprojAssemblyReference.cache
 C:\dev\Kernys.Library\kernys.Library.Web\kernys.Library.Web\bin\Debug\netcoreapp2.2\kernys.Library.Web.deps.json
 C:\dev\Kernys.Library\kernys.Library.Web\kernys.Library.Web\bin\Debug\netcoreapp2.2\kernys.Library.Web.runtimeconfig.json
 C:\dev\Kernys.Library\kernys.Library.Web\kernys.Library.Web\bin\Debug\netcoreapp2.2\kernys.Library.Web.runtimeconfig.dev.json
@@ -26,7 +27,6 @@ C:\dev\Kernys.Library\kernys.Library.Web\kernys.Library.Web\bin\Debug\netcoreapp
 C:\dev\Kernys.Library\kernys.Library.Web\kernys.Library.Web\bin\Debug\netcoreapp2.2\Kernys.Library.Core.pdb
 C:\dev\Kernys.Library\kernys.Library.Web\kernys.Library.Web\bin\Debug\netcoreapp2.2\Kernys.Library.Repository.pdb
 C:\dev\Kernys.Library\kernys.Library.Web\kernys.Library.Web\bin\Debug\netcoreapp2.2\Kernys.Library.Service.pdb
-C:\dev\Kernys.Library\kernys.Library.Web\kernys.Library.Web\obj\Debug\netcoreapp2.2\kernys.Library.Web.csprojAssemblyReference.cache
 C:\dev\Kernys.Library\kernys.Library.Web\kernys.Library.Web\obj\Debug\netcoreapp2.2\kernys.Library.Web.csproj.CoreCompileInputs.cache
 C:\dev\Kernys.Library\kernys.Library.Web\kernys.Library.Web\obj\Debug\netcoreapp2.2\kernys.Library.Web.RazorAssemblyInfo.cache
 C:\dev\Kernys.Library\kernys.Library.Web\kernys.Library.Web\obj\Debug\netcoreapp2.2\kernys.Library.Web.RazorAssemblyInfo.cs

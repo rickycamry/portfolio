@@ -15,12 +15,12 @@ using System.Text;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.AspNetCore.Http;
 
-namespace kernys.Library.Web.Controllers
-{
-    [Route("api/[controller]")]
-    [AllowAnonymous]
-    public class AccountController : BaseController
+    namespace kernys.Library.Web.Controllers
     {
+        [Route("api/[controller]")]
+        [AllowAnonymous]
+        public class AccountController : BaseController
+        {
 
         private readonly SignInManager<LibraryUser> _singInManager;
         private readonly RoleManager<IdentityRole> _roleManager;

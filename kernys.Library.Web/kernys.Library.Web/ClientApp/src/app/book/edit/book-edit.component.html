@@ -49,6 +49,11 @@
             <textarea id="Description" formControlName="Description" placeholder="enter the description..."
                 class="form-control"></textarea>
         </div>
+
+         
+        <book-publisher></book-publisher>
+
+         <br/>
         <div class="form-group commands">
             <button *ngIf="isEditMode" type="submit" [disabled]="form.invalid" class="btn btn-success">
                 Apply Changes

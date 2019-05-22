@@ -47,7 +47,7 @@ namespace kernys.Library.Web.Controllers
         public IActionResult GetUserBooks()
         {
 
-            var b = this._service.GetUserBooks(this.GetCurrentUserId());
+            var b = this._service.GetUserBooks();
             var books = b.Adapt<BookViewModel[]>();
 
             return Json(books, this.JsonFormat);
@@ -57,7 +57,7 @@ namespace kernys.Library.Web.Controllers
         public IActionResult GetUserBook(int id)
         {
 
-            var b = this._service.GetUserBook(id, this.GetCurrentUserId());
+            var b = this._service.GetUserBook(id);
             var book = b.Adapt<BookViewModel>();
 
             return Json(book, this.JsonFormat);
@@ -84,7 +84,7 @@ namespace kernys.Library.Web.Controllers
                 {
 
 
-                    var newBook = this._service.AddBook(book.Adapt<Book>(), this.GetCurrentUserId());
+                    var newBook = this._service.AddBook(book.Adapt<Book>());
                     return StatusCode(StatusCodes.Status200OK, book.Adapt<BookCreateViewModel>());
                 }
 
@@ -110,7 +110,7 @@ namespace kernys.Library.Web.Controllers
                 if (ModelState.IsValid)
                 {
 
-                  var  currentBook=this._service.GetUserBook(book.Id,this.GetCurrentUserId());
+                  var  currentBook=this._service.GetUserBook(book.Id);
                   if(currentBook==null)
                   return StatusCode(StatusCodes.Status400BadRequest, "Bad request.");
                    currentBook.ISBN=book.ISBN;
@@ -144,8 +144,9 @@ namespace kernys.Library.Web.Controllers
                 if (ModelState.IsValid)
                 {
 
+                    var book = this._service.GetUserBook(id);
 
-                    this._service.DeleteBook(id,this.GetCurrentUserId());
+                    this._service.DeleteBook(book);
                     return StatusCode(StatusCodes.Status200OK);
                 }
 

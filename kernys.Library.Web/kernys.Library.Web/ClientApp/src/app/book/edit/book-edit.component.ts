@@ -3,10 +3,8 @@ import { Book } from 'src/app/core/interfaces/book';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 import { BaseForm } from 'src/app/core/baseForm';
 import { TOASTR_TOKEN, Toastr } from 'src/app/core/interfaces/toastr';
-import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 import { BookService } from '../book.service';
 import { Router, ActivatedRoute } from '@angular/router';
-import { element } from '@angular/core/src/render3';
 
 @Component({
     templateUrl: './book-edit.component.html',
@@ -68,6 +66,7 @@ export class BookEditComponent extends BaseForm implements OnInit {
 
         this.form.setValue({
             ISBN: this.book.ISBN,
+            PhotoUrl :this.book.PhotoUrl,
             Title: this.book.Title,
             Description: this.book.Description,
             Language: this.book.Language,
@@ -81,6 +80,7 @@ export class BookEditComponent extends BaseForm implements OnInit {
 
         this.form = this.fb.group({
             ISBN: new FormControl('', [Validators.required, Validators.maxLength(10), Validators.minLength(10)]),
+            PhotoUrl:[''],
             Title: ['', [Validators.required]],
             Description: ['', [Validators.required]],
             Language: ['', [Validators.required]],
@@ -108,9 +108,6 @@ export class BookEditComponent extends BaseForm implements OnInit {
     onSubmit() {
 
         if (!this.form.invalid) {
-              
-
-            
 
             if (this.isEditMode) {
 

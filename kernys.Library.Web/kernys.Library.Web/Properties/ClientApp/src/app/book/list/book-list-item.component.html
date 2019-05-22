@@ -1,0 +1,14 @@
+    <img src="{{book.PhotoUrl}}" width="80%" height="300px" [routerLink]="['/book/',book.Id]">
+    <div class="card-body">
+      <h5 class="card-title">{{book.Title}}</h5>
+      <p class="card-text">{{book.Description | reduceParagraph:200}}</p>
+      <p class="card-text"><small class="text-muted">ISBN:{{book.ISBN}}</small></p>
+       <ul>
+       <li *ngFor="let a of book.Authors" >
+        <a [routerLink]="['/author/',a.Id]">{{a.FirstName}} {{a.LastName}}</a>   
+       </li>
+       </ul>
+      <button type="button" class="btn btn-secondary btn-sm" [routerLink]="['/book/',book.Id]">Detail</button>
+      <button type="button" *ngIf="isProfile" class="btn btn-primary btn-sm" [routerLink]="['/book/edit',book.Id]">Edit</button>
+    </div>
+ 

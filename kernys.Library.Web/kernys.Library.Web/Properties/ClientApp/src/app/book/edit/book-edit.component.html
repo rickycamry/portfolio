@@ -1,0 +1,73 @@
+<div class="quiz-edit">
+    <h2>{{pageTitle}}</h2>
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+        <div class="form-group" [ngClass]="{ 'has-error has-feedback' :hasError('Title')}">
+            <label for="title">Book title:</label>
+            <br />
+            <input type="text" id="title" formControlName="Title" required placeholder="choose a title..."
+                class="form-control" />
+            <span *ngIf="hasError('Title')" class="glyphicon glyphicon-remove form-control-feedback"
+                aria-hidden="true"></span>
+            <div *ngIf="hasError('Title')" class="help-block">
+                Title is a required field: please insert a valid title.
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="Image">Book Image:</label>
+            <br />
+            <input type="file" id="PhotoUrl" formControlName="PhotoUrl" placeholder="enter a ISBN..." class="form-control" />
+        </div>
+        <div class="form-group">
+            <label for="ISBN">Book ISBN:</label>
+            <br />
+            <input type="text" id="ISBN" formControlName="ISBN" placeholder="enter a ISBN..." class="form-control" />
+        </div>
+        <div class="form-group">
+            <label for="Language">Book Language:</label>
+            <br />
+            <select formControlName="Language" class="form-control">
+                <option value="">Select a Language</option>
+                <option value="English">English</option>
+                <option value="Spanish">Spanish</option>
+                <option value="French">French</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="Price">Book Price:</label>
+            <br />
+            <input type="number" id="Price" formControlName="Price" placeholder="enter a Price..."
+                class="form-control" />
+        </div>
+        <div class="form-group">
+            <label for="Year">Book Year:</label>
+            <br />
+            <input type="text" id="Year" formControlName="Year" placeholder="enter a Year..." class="form-control" />
+        </div>
+        <div class="form-group">
+            <label for="Description">Book Description :</label>
+            <br />
+            <textarea id="Description" formControlName="Description" placeholder="enter the description..."
+                class="form-control"></textarea>
+        </div>
+        <div class="form-group commands">
+            <button *ngIf="isEditMode" type="submit" [disabled]="form.invalid" class="btn btn-success">
+                Apply Changes
+            </button>
+            <button *ngIf="!isEditMode" type="submit" [disabled]="form.invalid" class="btn btn-success">
+                Create the book!
+            </button>
+            <button type="button" *ngIf="isEditMode" (click)="onDelete()" class="btn btn-danger">
+                Delete
+            </button>
+            <button type="submit" [routerLink]="['/profile']" class="btn btn-default">
+                Go back
+            </button>
+         
+
+        </div>
+    </form>
+    <!-- <question-list *ngIf="editMode" [quiz]="quiz"></question-list>
+
+    <result-list *ngIf="editMode" [quiz]="quiz"></result-list> -->
+
+</div>
