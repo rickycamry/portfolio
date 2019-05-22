@@ -6,6 +6,10 @@ namespace Kernys.Library.Service.Interfaces
 
     public interface IAuthorService
     {
+
+
+        ///New chenges
+
         /// <summary>
         /// Get the authors on the DB
         /// </summary>
